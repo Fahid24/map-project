@@ -16,6 +16,9 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-image`,
+    `gatsby-plugin-styled-components`,
+    `gatsby-plugin-postcss`,
+
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -23,6 +26,16 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
+    // {
+    //   resolve: `gatsby-plugin-google-fonts`,
+    //   options: {
+    //     fonts: [
+    //       `limelight`,
+    //       `source sans pro\:300,400,400i,700`, // you can also specify font weights and styles
+    //     ],
+    //     display: "swap",
+    //   },
+    // },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
