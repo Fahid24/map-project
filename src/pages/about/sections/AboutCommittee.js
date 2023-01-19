@@ -1,87 +1,24 @@
 import React from "react"
 import styled from "styled-components"
-import committee1 from "../../../../static/home/Rectangle 7 (2).png"
-import committee2 from "../../../../static/home/Rectangle 7 (1).png"
-import committee3 from "../../../../static/home/Rectangle 7.png"
 
-const AboutCommittee = () => {
+const AboutCommittee = ({ title, des, members }) => {
   return (
     <MainWrapper>
       <TextWrapper>
-        <h1>COMMITTEE</h1>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-          hendrerit elit quis metus fermentum vehicula. Ut malesuada suscipit
-          elit quis interdum.
-        </p>
+        <h1>{title}</h1>
+        <p>{des}</p>
       </TextWrapper>
       <Wrapper>
-        <ImgWrapper>
-          <img src={committee1} alt="" />
+        {members?.map(member => (
+          <ImgWrapper key={member.id}>
+            <img src={member.committeeImage.url} alt="" />
 
-          <div className="committee1">
-            <h2>Narendra Modi</h2>
-            <p>Prime Minister</p>
-          </div>
-        </ImgWrapper>
-        <ImgWrapper>
-          <img src={committee2} alt="" />
-          <div className="committee2">
-            <h2>Narendra Modi</h2>
-            <p>Prime Minister</p>
-          </div>
-        </ImgWrapper>
-        <ImgWrapper>
-          <img src={committee3} alt="" />
-          <div className="committee3">
-            <h2>Narendra Modi</h2>
-            <p>Prime Minister</p>
-          </div>
-        </ImgWrapper>
-        <ImgWrapper>
-          <img src={committee1} alt="" />
-
-          <div className="committee1">
-            <h2>Narendra Modi</h2>
-            <p>Prime Minister</p>
-          </div>
-        </ImgWrapper>
-        <ImgWrapper>
-          <img src={committee2} alt="" />
-          <div className="committee2">
-            <h2>Narendra Modi</h2>
-            <p>Prime Minister</p>
-          </div>
-        </ImgWrapper>
-        <ImgWrapper>
-          <img src={committee3} alt="" />
-          <div className="committee3">
-            <h2>Narendra Modi</h2>
-            <p>Prime Minister</p>
-          </div>
-        </ImgWrapper>
-        <ImgWrapper>
-          <img src={committee1} alt="" />
-
-          <div className="committee1">
-            <h2>Narendra Modi</h2>
-            <p>Prime Minister</p>
-          </div>
-        </ImgWrapper>
-        <ImgWrapper>
-          <img src={committee2} alt="" />
-          <div className="committee2">
-            <h2>Narendra Modi</h2>
-            <p>Prime Minister</p>
-          </div>
-        </ImgWrapper>
-        <ImgWrapper>
-          <img src={committee3} alt="" />
-          <div className="committee3">
-            <h2>Narendra Modi</h2>
-            <p>Prime Minister</p>
-          </div>
-        </ImgWrapper>
+            <div className="committee1">
+              <h2>{member.name}</h2>
+              <p>{member.position}</p>
+            </div>
+          </ImgWrapper>
+        ))}
       </Wrapper>
     </MainWrapper>
   )

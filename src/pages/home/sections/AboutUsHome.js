@@ -1,40 +1,34 @@
+import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
-import event1 from "../../../../static/home/Ellipse 6.png"
-import event2 from "../../../../static/home/Ellipse 4.png"
-import event3 from "../../../../static/home/Ellipse 7.png"
 
-const AboutUsHome = () => {
+const AboutUsHome = ({ title, des, img1, img2, img3 }) => {
   return (
     <MainWrapper className="relative">
       <Wrapper>
         <TextWrapper>
-          <h1>ABOUT US</h1>
-          <p>
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text
-            ever since the 1500s, when an unknown printer took a galley of type
-            and scrambled it to make a type specimen book. It has survived not
-            only five centuries, but also the leap into electronic typesetting,
-            remaining essentially unchanged. It was popularised in the 1960s
-            with the release of Letraset sheets containing Lorem Ipsum passages,
-            and more recently with desktop publishing software like Aldus
-            PageMaker including versions of Lorem Ipsum.
-          </p>
+          <h1>{title}</h1>
+          <p>{des}</p>
         </TextWrapper>
-        <button>EXPLORE MORE ABOUT US</button>
-        <img className="-ml-12 mt-[32px]" src={event3} alt="" />
+        <Link to="/about">
+          {" "}
+          <button>EXPLORE MORE ABOUT US</button>
+        </Link>
+        <img className="-ml-12 mt-[32px]" src={img3} alt="" />
       </Wrapper>
       <img
         className="big-img ml-14 mb-[100px] max-w-[700px]"
-        src={event2}
+        src={img2}
         alt=""
       />
 
-      <img className="absolute top-[102px] right-[220px]" src={event1} alt="" />
+      <img className="absolute top-[102px] right-[220px]" src={img1} alt="" />
     </MainWrapper>
   )
 }
+
+export default AboutUsHome
+
 const MainWrapper = styled.section`
   background: #ed8f1d;
   display: grid;
@@ -86,4 +80,3 @@ const TextWrapper = styled.section`
     color: white;
   }
 `
-export default AboutUsHome

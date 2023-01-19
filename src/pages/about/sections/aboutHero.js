@@ -1,17 +1,12 @@
 import React from "react"
 import styled from "styled-components"
-import background from "../../../images/img_lights.jpg"
 
-const AboutHero = () => {
+const AboutHero = ({ banner, title, des }) => {
   return (
-    <Wrapper background={background}>
+    <Wrapper background={banner}>
       <TextWrapper>
-        <h1>About Us</h1>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-          hendrerit elit quis metus fermentum vehicula. Ut malesuada suscipit
-          elit quis interdum.
-        </p>
+        <h1>{title}</h1>
+        <p>{des}</p>
       </TextWrapper>
     </Wrapper>
   )

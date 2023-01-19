@@ -1,15 +1,18 @@
+import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
-import img from "../../../../static/home/Rectangle 12.png"
 
-const BecomeMember = () => {
+const BecomeMember = ({ title, image }) => {
   return (
     <Wrapper>
       <TextWrapper>
-        <h1>Become a member and enjoy all the benifits</h1>
-        <button>Become a member</button>
+        <h1>{title}</h1>
+        <Link to="/members">
+          {" "}
+          <button className="">Become a member</button>
+        </Link>
       </TextWrapper>
-      <img src={img} alt="" />
+      <img src={image} alt="" />
     </Wrapper>
   )
 }

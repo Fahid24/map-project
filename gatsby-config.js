@@ -18,7 +18,14 @@ module.exports = {
     `gatsby-plugin-image`,
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-postcss`,
-
+    {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: `livnzjdvjqrh`,
+        // Learn about environment variables: https://gatsby.dev/env-vars
+        accessToken: `a1oix0IEDCqUpf8l9JITHxp4V5_gDSIE4U2TTb1Gc_o`,
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {

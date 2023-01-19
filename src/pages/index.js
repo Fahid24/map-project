@@ -1,9 +1,5 @@
 import * as React from "react"
 // import { Link } from "gatsby"
-import img1 from "../images/Sankrant-2023-1-min.png"
-import img2 from "../images/WhatsApp-Image-2023-01-06-at-2.45.32-PM.jpeg"
-import img3 from "../images/new-non-eb-membership.png"
-import img4 from "../images/MUKTI-2.png"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -12,17 +8,45 @@ import HomeEvents from "./home/sections/HomeEvents"
 import AboutUsHome from "./home/sections/AboutUsHome"
 import Committee from "./home/sections/Committe"
 import BecomeMember from "./home/sections/BecomeMember "
+import { graphql } from "gatsby"
 
-const IndexPage = () => (
-  <Layout>
-    <Slider />
-    <HomeEvents />
-    <AboutUsHome />
-    <Committee />
-    <BecomeMember />
-  </Layout>
-)
+const IndexPage = ({ data }) => {
+  const homeData = data?.allContentfulHomePage.edges[0].node
+  const slider = homeData?.sliders
+  const eventsTitle = homeData.eventTitle
+  const eventsDes = homeData.eventDescription
+  const events = homeData.homeEvents
+  const aboutTitle = homeData.homeAboutTitle
+  const aboutDes = homeData.homeAboutDes.homeAboutDes
+  const img1 = homeData.homeAboutBanner1.url
+  const img2 = homeData.homeAboutBanner2.url
+  const img3 = homeData.homeAboutBanner3.url
+  const committeeTitle = homeData.homeCommitteeTitle
+  const committee = homeData.homeCommittes
+  const committeeDes = homeData.homeCommitteeDes.homeCommitteeDes
+  const ctaTitle = data.contentfulCta.title
+  const ctaImage = data.contentfulCta.image.url
 
+  return (
+    <Layout>
+      <Slider slider={slider} />
+      <HomeEvents title={eventsTitle} des={eventsDes} events={events} />
+      <AboutUsHome
+        title={aboutTitle}
+        des={aboutDes}
+        img1={img1}
+        img2={img2}
+        img3={img3}
+      />
+      <Committee
+        title={committeeTitle}
+        des={committeeDes}
+        committees={committee}
+      />
+      <BecomeMember title={ctaTitle} image={ctaImage} />
+    </Layout>
+  )
+}
 /**
  * Head export to define metadata for the page
  *
@@ -31,3 +55,60 @@ const IndexPage = () => (
 export const Head = () => <Seo title="Home" />
 
 export default IndexPage
+export const query = graphql`
+  query SliderQuery {
+    allContentfulHomePage {
+      edges {
+        node {
+          sliders {
+            sliderImage {
+              url
+            }
+          }
+          eventTitle
+          eventDescription
+          homeEvents {
+            id
+            title
+            eventDescription
+            eventDate(locale: "")
+            eventImage {
+              url
+            }
+          }
+          homeAboutTitle
+          homeAboutDes {
+            homeAboutDes
+          }
+          homeAboutBanner1 {
+            url
+          }
+          homeAboutBanner2 {
+            url
+          }
+          homeAboutBanner3 {
+            url
+          }
+          homeCommitteeTitle
+          homeCommittes {
+            name
+            id
+            position
+            committeeImage {
+              url
+            }
+          }
+          homeCommitteeDes {
+            homeCommitteeDes
+          }
+        }
+      }
+    }
+    contentfulCta {
+      title
+      image {
+        url
+      }
+    }
+  }
+`

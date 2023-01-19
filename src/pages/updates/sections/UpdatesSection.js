@@ -1,50 +1,24 @@
 import React from "react"
 import styled from "styled-components"
-import img from "./Rectangle 5 (1).png"
 import UpdatesCard from "../components/UpdatesCard"
 
-const UpdatesSection = () => {
+const UpdatesSection = ({ title, des, updates }) => {
+  console.log(updates)
   return (
     <MainWrapper>
       <TextWrapper>
-        <h1>Latest updates</h1>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-          hendrerit elit quis metus fermentum vehicula. Ut malesuada suscipit
-          elit quis interdum.
-        </p>
+        <h1>{title}</h1>
+        <p>{des}</p>
       </TextWrapper>
       <CardsWrapper>
-        <UpdatesCard
-          img={img}
-          title={"Lorem ipsum dolor sit amet, consectetur adipiscing "}
-          date={"19/02/2023"}
-        />
-        <UpdatesCard
-          img={img}
-          title={"Lorem ipsum dolor sit amet, consectetur adipiscing "}
-          date={"19/02/2023"}
-        />
-        <UpdatesCard
-          img={img}
-          title={"Lorem ipsum dolor sit amet, consectetur adipiscing "}
-          date={"19/02/2023"}
-        />
-        <UpdatesCard
-          img={img}
-          title={"Lorem ipsum dolor sit amet, consectetur adipiscing "}
-          date={"19/02/2023"}
-        />
-        <UpdatesCard
-          img={img}
-          title={"Lorem ipsum dolor sit amet, consectetur adipiscing "}
-          date={"19/02/2023"}
-        />
-        <UpdatesCard
-          img={img}
-          title={"Lorem ipsum dolor sit amet, consectetur adipiscing "}
-          date={"19/02/2023"}
-        />
+        {updates?.map(update => (
+          <UpdatesCard
+            key={update.id}
+            img={update.updateImage.url}
+            title={update.title}
+            date={update.date.slice(0, 10)}
+          />
+        ))}
       </CardsWrapper>
     </MainWrapper>
   )

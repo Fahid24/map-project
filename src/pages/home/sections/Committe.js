@@ -1,45 +1,30 @@
+import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
-import committee1 from "../../../../static/home/Rectangle 7 (2).png"
-import committee2 from "../../../../static/home/Rectangle 7 (1).png"
-import committee3 from "../../../../static/home/Rectangle 7.png"
 
-const Committee = () => {
+const Committee = ({ committees, title, des }) => {
   return (
     <MainWrapper>
       <TextWrapper>
-        <h1>COMMITTEE</h1>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-          hendrerit elit quis metus fermentum vehicula. Ut malesuada suscipit
-          elit quis interdum.
-        </p>
+        <h1>{title}</h1>
+        <p>{des}</p>
       </TextWrapper>
       <Wrapper>
-        <ImgWrapper>
-          <img src={committee1} alt="" />
+        {committees?.map(committee => (
+          <ImgWrapper key={committee.id}>
+            <img src={committee.committeeImage.url} alt="" />
 
-          <div className="committee1">
-            <h2>Narendra Modi</h2>
-            <p>Prime Minister</p>
-          </div>
-        </ImgWrapper>
-        <ImgWrapper>
-          <img src={committee2} alt="" />
-          <div className="committee2">
-            <h2>Narendra Modi</h2>
-            <p>Prime Minister</p>
-          </div>
-        </ImgWrapper>
-        <ImgWrapper>
-          <img src={committee3} alt="" />
-          <div className="committee3">
-            <h2>Narendra Modi</h2>
-            <p>Prime Minister</p>
-          </div>
-        </ImgWrapper>
+            <div className="committee1">
+              <h2>{committee.name}</h2>
+              <p>{committee.position}</p>
+            </div>
+          </ImgWrapper>
+        ))}
       </Wrapper>
-      <Explore>EXPLORE MORE</Explore>
+
+      <Link to="/about">
+        <Explore>EXPLORE MORE</Explore>
+      </Link>
     </MainWrapper>
   )
 }

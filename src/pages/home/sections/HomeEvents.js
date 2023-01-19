@@ -1,47 +1,26 @@
 import React from "react"
 import styled from "styled-components"
 import EventsCard from "../components/EventsCard"
-import img1 from "../../../../static/home/Rectangle 5 (1).png"
-import img2 from "../../../../static/home/Rectangle 5 (2).png"
-import img3 from "../../../../static/home/Rectangle 5 (3).png"
+
 import { Link } from "gatsby"
 
-const HomeEvents = () => {
+const HomeEvents = ({ title, des, events }) => {
   return (
     <Wrapper>
       <TextWrapper>
-        <h1>UPCOMING EVENTS</h1>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-          hendrerit elit quis metus fermentum vehicula. Ut malesuada suscipit
-          elit quis interdum.
-        </p>
+        <h1>{title}</h1>
+        <p>{des}</p>
       </TextWrapper>
       <CardWrapper>
-        <EventsCard
-          img={img1}
-          title={"Lorem ipsum dolor sit amet"}
-          des={
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam hendrerit"
-          }
-          date={"18/02/2023"}
-        />
-        <EventsCard
-          img={img2}
-          title={"Lorem ipsum dolor sit amet"}
-          des={
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam hendrerit"
-          }
-          date={"18/02/2023"}
-        />
-        <EventsCard
-          img={img3}
-          title={"Lorem ipsum dolor sit amet"}
-          des={
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam hendrerit"
-          }
-          date={"18/02/2023"}
-        />
+        {events.map(event => (
+          <EventsCard
+            key={event.id}
+            img={event.eventImage.url}
+            title={event.title}
+            des={event.eventDescription}
+            date={event.eventDate.slice(0, 10)}
+          />
+        ))}
       </CardWrapper>
       <Explore to="events">EXPLORE MORE</Explore>
     </Wrapper>
