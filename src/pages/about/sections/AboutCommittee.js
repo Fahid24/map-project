@@ -81,12 +81,5 @@ const ImgWrapper = styled.div`
     }
   }
 `
-const Explore = styled.p`
-  cursor: pointer;
-  font-weight: 500;
-  font-size: 24px;
-  line-height: 36px;
-  text-align: center;
-  color: #f49016;
-`
+
 export default AboutCommittee

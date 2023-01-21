@@ -7,6 +7,7 @@
   "dependencies": {
     "babel-plugin-styled-components": "^2.0.7",
     "daisyui": "^2.46.1",
+    "firebase": "^9.16.0",
     "gatsby": "^5.4.0",
     "gatsby-plugin-image": "^3.4.0",
     "gatsby-plugin-manifest": "^5.4.0",
@@ -18,8 +19,10 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
+    "react-toastify": "^9.1.1",
     "styled-components": "^5.3.6",
-    "swiper": "^8.4.5"
+    "swiper": "^8.4.5",
+    "uid": "^2.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.13",

@@ -22,7 +22,9 @@ const HomeEvents = ({ title, des, events }) => {
           />
         ))}
       </CardWrapper>
-      <Explore to="events">EXPLORE MORE</Explore>
+      <Link to="/events">
+        <Explore>EXPLORE MORE</Explore>
+      </Link>
     </Wrapper>
   )
 }
@@ -58,7 +60,7 @@ const CardWrapper = styled.div`
   gap: 40px;
   justify-content: center;
 `
-const Explore = styled(Link)`
+const Explore = styled.p`
   cursor: pointer;
   font-weight: 500;
   font-size: 24px;

@@ -1,4 +1,3 @@
-import { StaticImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
 import logo from "../../static/logos/map-logo-removebg-preview 1.png"
@@ -109,6 +108,5 @@ const ContentWrapper2 = styled.div`
     text-transform: capitalize;
   }
 `
-const Wrapper3 = styled.div``
 
 export default Footer

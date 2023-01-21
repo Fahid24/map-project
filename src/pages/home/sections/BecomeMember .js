@@ -8,7 +8,6 @@ const BecomeMember = ({ title, image }) => {
       <TextWrapper>
         <h1>{title}</h1>
         <Link to="/members">
-          {" "}
           <button className="">Become a member</button>
         </Link>
       </TextWrapper>

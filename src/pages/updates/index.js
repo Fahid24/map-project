@@ -11,7 +11,6 @@ const index = ({ data }) => {
   const updates = updateData.updates
   const ctaTitle = data.contentfulCta.title
   const ctaImage = data.contentfulCta.image.url
-  console.log(updateData)
   return (
     <Layout>
       <UpdatesSection title={title} des={des} updates={updates} />
