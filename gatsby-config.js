@@ -7,11 +7,6 @@
 /**
  * @type {import('gatsby').GatsbyConfig}
  */
-
-require("dotenv").config({
-  path: `.env`,
-})
-
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
@@ -26,9 +21,9 @@ module.exports = {
     {
       resolve: `gatsby-source-contentful`,
       options: {
-        spaceId: process.env.SPACE_ID,
+        spaceId: `livnzjdvjqrh`,
         // Learn about environment variables: https://gatsby.dev/env-vars
-        accessToken: process.env.DELIVERY_TOKEN,
+        accessToken: `a1oix0IEDCqUpf8l9JITHxp4V5_gDSIE4U2TTb1Gc_o`,
       },
     },
     {
