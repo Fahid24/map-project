@@ -49,12 +49,7 @@ const Navbar = () => {
           <img className="w-20" src={logo} alt="" />
         </Link>
       </div>
-      <Link
-        to="/members"
-        className="btn ml-8 btn-sm lg:hidden text-white rounded-full text-md hover:bg-orange-300 font-bold-md bg-[#ED8F1D]"
-      >
-        Become a Member
-      </Link>
+
       <div className="navbar-center gap-10 hidden lg:flex">
         <ul className="menu gap-6 menu-horizontal px-1">
           <li className="text-md font-bold-md">
