@@ -38,5 +38,15 @@ const Wrapper = styled.div`
     color: #ed8f1d;
     border-radius: 40px;
   }
+  @media (max-width: 768px) {
+    margin: 0;
+    border-radius: 0;
+    flex-direction: column;
+    padding: 100px 20px;
+    text-align: center;
+    h1 {
+      font-size: 28px;
+    }
+  }
 `
 export default QuestionsSection

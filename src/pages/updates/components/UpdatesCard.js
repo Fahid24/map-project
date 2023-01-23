@@ -33,5 +33,10 @@ const Wrapper = styled.div`
 
     color: #ed8f1d;
   }
+  transition: 0.5s;
+  &:hover {
+    transform: scale(1.1);
+    z-index: 1;
+  }
 `
 export default UpdatesCard

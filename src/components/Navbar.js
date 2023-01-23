@@ -5,10 +5,10 @@ import logo from "../../static/logos/map-logo-removebg-preview 1.png"
 
 const Navbar = () => {
   return (
-    <div className="navbar fixed shadow-xl px-20 flex justify-center top-0 z-10 bg-base-100">
+    <div className="navbar fixed shadow-xl lg:px-20 flex lg:justify-center top-0 z-10 bg-base-100">
       <div className="navbar-start">
         <div className="dropdown">
-          <label htmlFor="svg" className="btn btn-ghost lg:hidden">
+          <label tabIndex={0} className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -25,7 +25,7 @@ const Navbar = () => {
             </svg>
           </label>
           <ul
-            id="svg"
+            tabIndex={0}
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li className="text-md font-bold-md">
@@ -43,20 +43,18 @@ const Navbar = () => {
             <li className="text-md font-bold-md">
               <Link to="/contact">Contact Us</Link>
             </li>
-            <li>
-              <Link
-                to="/members"
-                className="btn btn-sm text-white rounded-full text-md hover:bg-orange-300 font-bold-md bg-[#ED8F1D]"
-              >
-                Become a Member
-              </Link>
-            </li>
           </ul>
         </div>
         <Link to="/" className="">
           <img className="w-20" src={logo} alt="" />
         </Link>
       </div>
+      <Link
+        to="/members"
+        className="btn ml-8 btn-sm lg:hidden text-white rounded-full text-md hover:bg-orange-300 font-bold-md bg-[#ED8F1D]"
+      >
+        Become a Member
+      </Link>
       <div className="navbar-center gap-10 hidden lg:flex">
         <ul className="menu gap-6 menu-horizontal px-1">
           <li className="text-md font-bold-md">

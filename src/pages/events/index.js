@@ -12,7 +12,7 @@ const EventsIndex = ({ data }) => {
   const banner = eventData.banner.url
   const ctaTitle = data.contentfulCta.title
   const ctaImg = data.contentfulCta.image.url
-  console.log(data)
+  // console.log(data)
   return (
     <Layout>
       <EventsSection title={title} des={des} banner={banner} events={events} />

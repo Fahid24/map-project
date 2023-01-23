@@ -11,7 +11,7 @@ const Footer = () => {
             <img src={logo} alt="" />
             <h1>Marathi association Perth</h1>
           </div>
-          <p>
+          <p className="text-center">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
             hendrerit elit quis metus fermentum vehicula. Ut malesuada suscipit
             elit quis interdum.
@@ -55,6 +55,10 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
+  @media (max-width: 768px) {
+    display: grid;
+    justify-items: center;
+  }
 `
 const ContentWrapper1 = styled.div`
   display: grid;
@@ -81,6 +85,12 @@ const ContentWrapper1 = styled.div`
     text-transform: capitalize;
     color: #d3d3d3;
   }
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 28px;
+      max-width: 100%;
+    }
+  }
 `
 const ContentWrapper2 = styled.div`
   display: grid;
@@ -106,6 +116,13 @@ const ContentWrapper2 = styled.div`
     /* identical to box height */
     color: #b6b6b6;
     text-transform: capitalize;
+    cursor: pointer;
+    &:hover {
+      color: #ed8f1d;
+    }
+  }
+  @media (max-width: 768px) {
+    text-align: center;
   }
 `
 

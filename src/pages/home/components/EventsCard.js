@@ -4,7 +4,7 @@ import styled from "styled-components"
 const EventsCard = ({ img, title, des, date }) => {
   return (
     <Wrapper>
-      <img src={img} alt="" />
+      <img className="object-cover w-[100%] h-[auto]" src={img} alt="" />
       <TextWrapper>
         <h2>{title}</h2>
         <p>{des}</p>
@@ -13,13 +13,18 @@ const EventsCard = ({ img, title, des, date }) => {
     </Wrapper>
   )
 }
+
 const Wrapper = styled.div`
   box-shadow: 0px 4px 20px 10px rgba(97, 97, 97, 0.05);
   border-radius: 6px;
   display: grid;
   gap: 20px;
+  transition: 0.5s;
+  &:hover {
+    transform: scale(1.1);
+  }
+
   img {
-    max-width: 400px;
   }
 `
 const TextWrapper = styled.div`

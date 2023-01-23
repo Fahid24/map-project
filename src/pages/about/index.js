@@ -1,9 +1,9 @@
 import { graphql } from "gatsby"
 import React from "react"
+import Banner from "../../components/banner"
 import Layout from "../../components/layout"
 import BecomeMember from "../home/sections/BecomeMember "
 import AboutCommittee from "./sections/AboutCommittee"
-import AboutHero from "./sections/aboutHero"
 import WhoWESection from "./sections/WhoWESection"
 
 const index = ({ data }) => {
@@ -31,7 +31,7 @@ const index = ({ data }) => {
 
   return (
     <Layout>
-      <AboutHero banner={banner} title={title} des={des} />
+      <Banner background={banner} title={title} des={des} />
       <WhoWESection
         title={whoTitle}
         des={whoDes}

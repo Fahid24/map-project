@@ -1,24 +1,28 @@
 import React from "react"
-import styled from "styled-components"
+import styled, { css, keyframes } from "styled-components"
 import EventsCard from "../components/EventsCard"
 
 import { Link } from "gatsby"
+import { useInView } from "react-intersection-observer"
 
-const HomeEvents = ({ title, des, events }) => {
+const HomeEvents = props => {
+  const { title, des, events } = props
+  const { ref, inView } = useInView()
+
   return (
     <Wrapper>
       <TextWrapper>
         <h1>{title}</h1>
         <p>{des}</p>
       </TextWrapper>
-      <CardWrapper>
-        {events.map(event => (
+      <CardWrapper inView={inView} ref={ref}>
+        {events?.map(event => (
           <EventsCard
             key={event.id}
             img={event.eventImage.url}
             title={event.title}
             des={event.eventDescription}
-            date={event.eventDate.slice(0, 10)}
+            date={event.eventDate?.slice(0, 10)}
           />
         ))}
       </CardWrapper>
@@ -28,6 +32,32 @@ const HomeEvents = ({ title, des, events }) => {
     </Wrapper>
   )
 }
+
+// const cardAnimation = keyframes`
+// from{ transform: translateX(-500px)}
+// to{ transform: translateX(0)}
+// `
+
+// const mainAnimation = keyframes`
+// from {
+//   filter: blur(10px);
+//   transform: translateY(-20px);
+// }
+// to{
+//   filter: blur(0px);
+//   transform: translateY(0px);
+// }
+// `
+
+const cardAnimation = keyframes`
+from{ transform: scale(0.8);
+  filter: blur(20px);
+
+}
+to{ transform: scale(1);
+  filter: blur(0px);
+
+}`
 const Wrapper = styled.section`
   display: grid;
   gap: 77px;
@@ -52,13 +82,32 @@ const TextWrapper = styled.div`
     line-height: 30px;
     max-width: 865px;
   }
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 30px;
+    }
+    p {
+      padding: 0 10px;
+    }
+  }
 `
 const CardWrapper = styled.div`
-  margin-left: -20px;
   display: flex;
   padding: 0 65px;
   gap: 40px;
   justify-content: center;
+  animation: ${({ inView }) =>
+    inView
+      ? css`
+          ${cardAnimation} 2s cubic-bezier(0.075, 0.82, 0.165, 1) forwards
+        `
+      : "none"};
+  @media (max-width: 768px) {
+    margin-left: 0;
+    display: grid;
+    padding: 0 30px;
+    justify-items: center;
+  }
 `
 const Explore = styled.p`
   cursor: pointer;

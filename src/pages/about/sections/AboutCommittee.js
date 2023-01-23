@@ -29,6 +29,9 @@ const Wrapper = styled.section`
   grid-template-columns: auto auto auto;
   justify-content: center;
   gap: 80px;
+  @media (max-width: 768px) {
+    grid-template-columns: auto;
+  }
 `
 
 const MainWrapper = styled.section`
@@ -79,6 +82,11 @@ const ImgWrapper = styled.div`
       /* identical to box height */
       color: #ed8f1d;
     }
+  }
+  transition: 0.5s;
+  &:hover {
+    transform: scale(1.1);
+    z-index: 1;
   }
 `
 

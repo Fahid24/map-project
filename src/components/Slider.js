@@ -14,10 +14,10 @@ const Slider = ({ slider }) => {
         modules={[EffectCoverflow, Pagination, Autoplay]}
         className="mySwiper"
       >
-        {slider.map(u => (
+        {slider?.map(u => (
           <SwiperSlide key={u.id}>
             <img
-              className="object-cover h-[826px] mt-[92px] w-full"
+              className="object-cover w-[100%] h-[auto] mt-[92px]"
               src={u.sliderImage.url}
               alt="slider"
             />

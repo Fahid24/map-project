@@ -1,8 +1,48 @@
 import React from "react"
 import styled from "styled-components"
 import { BsCheckCircleFill } from "react-icons/bs"
+import { loadStripe } from "@stripe/stripe-js"
+// import StripeCheckout from "react-stripe-checkout"
 
 const PricingCard = ({ title, des, price, facilities, color }) => {
+  const amount = price?.slice(1, 3)
+  // console.log(amount)
+  const product = {
+    name: `Marathi Association Perth: ${title}`,
+    price: amount,
+    productOwner: "Marathi Association Perth",
+    description: des,
+    quantity: 1,
+  }
+  const handlePurchase = async () => {
+    const stripe = await loadStripe(
+      "pk_test_51Lcq7BLXHvCk9rLhXdU4ykecPymSFIEEVVgxLRJGZxQppaX7PGGsqnNUFzb3fKGJFPgusEnB0nLXuOA9UpjygXrZ00zoGfcUHe"
+    )
+    const body = { product }
+    const headers = {
+      "Content-Type": "application/json",
+    }
+
+    const response = await fetch(
+      "http://localhost:5000/api/create-checkout-session",
+      {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(body),
+      }
+    )
+
+    const session = await response.json()
+
+    const result = stripe.redirectToCheckout({
+      sessionId: session.id,
+    })
+
+    if (result.error) {
+      console.log(result.error)
+    }
+  }
+
   return (
     <MainWrapper color={color}>
       <div
@@ -26,7 +66,18 @@ const PricingCard = ({ title, des, price, facilities, color }) => {
             </li>
           ))}
         </ul>
-        <Button color={color}>become a member</Button>
+        {/* <StripeCheckout
+          amount={amount}
+          image="https://i.ibb.co/ysGmkZj/map-logo-removebg-preview-1.png"
+          token={handlePurchase}
+          stripeKey={
+            "pk_test_51Lcq7BLXHvCk9rLhXdU4ykecPymSFIEEVVgxLRJGZxQppaX7PGGsqnNUFzb3fKGJFPgusEnB0nLXuOA9UpjygXrZ00zoGfcUHe"
+          }
+        > */}
+        <Button className="" onClick={handlePurchase} color={color}>
+          become a member
+        </Button>
+        {/* </StripeCheckout> */}
       </Wrapper2>
     </MainWrapper>
   )
@@ -40,6 +91,15 @@ const MainWrapper = styled.div`
   display: grid;
   gap: 19px;
   border-radius: 10px;
+  transition: 0.5s;
+  @media (max-width: 768px) {
+    transform: scale(1);
+  }
+
+  &:hover {
+    transform: scale(1.1);
+    z-index: 1;
+  }
 `
 const Icon = styled(BsCheckCircleFill)`
   color: ${({ color }) => !color && "#ed8f1d"};
@@ -75,6 +135,9 @@ const Wrapper1 = styled.div`
     line-height: 30px;
     text-transform: capitalize;
   }
+  @media (max-width: 768px) {
+    padding: 30px 30px 0 30px;
+  }
 `
 
 const Wrapper2 = styled.div`
@@ -97,6 +160,9 @@ const Wrapper2 = styled.div`
       }
     }
   }
+  @media (max-width: 768px) {
+    padding: 0 30px 30px 30px;
+  }
 `
 
 const Button = styled.button`
@@ -112,6 +178,12 @@ const Button = styled.button`
   padding: 10px 50px;
   border: 1px solid #ed8f1d;
   border-radius: 10px;
+  &:hover {
+  }
+  &:focus {
+    outline: 2px solid ${({ color }) => (color ? "white" : "#ED8F1D")};
+    border: 3px solid ${({ color }) => (color ? "#ED8F1D" : "white")};
+  }
 `
 
 export default PricingCard

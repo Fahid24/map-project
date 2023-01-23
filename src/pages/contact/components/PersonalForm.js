@@ -77,14 +77,14 @@ const PersonalForm = () => {
         gender: "",
       })
 
-      toast.success("Successfully added post", docRef.id)
+      toast.success("Successfully added information", docRef.id)
     } catch (e) {
       toast.error("Error adding document:", e)
     }
   }
 
   return (
-    <div className="m-12">
+    <div className="m-10">
       <div className="overflow-hidden bg-white py-16 px-6 lg:px-8 lg:py-24">
         <div className="relative mx-auto max-w-xl">
           <svg
@@ -154,17 +154,13 @@ const PersonalForm = () => {
             />
           </svg>
           <div className="text-center">
-            <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+            <h2 className="text-2xl lg:text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               PERSONAL DETAILS
             </h2>
           </div>
           <div className="mt-12">
-            <form
-              onSubmit={submit}
-              method="POST"
-              className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-8"
-            >
-              <div>
+            <form onSubmit={submit} method="POST" className="lg:grid gap-5">
+              <div className="mt-5">
                 <label
                   htmlFor="name"
                   className="block text-md font-medium text-gray-700"
@@ -173,6 +169,7 @@ const PersonalForm = () => {
                 </label>
                 <div className="mt-1">
                   <input
+                    required
                     onChange={e => {
                       const name = e.target.value
                       setUpload(name)
@@ -183,11 +180,11 @@ const PersonalForm = () => {
                     value={upload.name}
                     autoComplete="family-name"
                     placeholder="Enter your name"
-                    className="block input input-bordered input-warning w-full max-w-xs rounded-md border-gray-300 py-3 px-4 shadow-sm shadow-gray-500 focus:border-indigo-500 focus:ring-indigo-500"
+                    className="block input input-bordered input-warning w-full  rounded-md border-gray-300 py-3 px-4 shadow-sm shadow-gray-500 focus:border-indigo-500 focus:ring-indigo-500"
                   />
                 </div>
               </div>
-              <div>
+              <div className="mt-5">
                 <label
                   htmlFor="profession"
                   className="block text-md font-medium text-gray-700"
@@ -196,6 +193,7 @@ const PersonalForm = () => {
                 </label>
                 <div className="mt-1">
                   <input
+                    required
                     onChange={e => {
                       const profession = e.target.value
                       setUpload(profession)
@@ -205,33 +203,12 @@ const PersonalForm = () => {
                     name="profession"
                     id="profession"
                     placeholder="Enter your Profession"
-                    className="block input input-bordered input-warning w-full max-w-xs rounded-md border-gray-300 py-3 px-4 shadow-sm shadow-gray-500 focus:border-indigo-500 focus:ring-indigo-500"
+                    className="block input input-bordered input-warning w-full  rounded-md border-gray-300 py-3 px-4 shadow-sm shadow-gray-500 focus:border-indigo-500 focus:ring-indigo-500"
                   />
                 </div>
               </div>
-              <div>
-                <label
-                  htmlFor="blood-group"
-                  className="block text-md font-medium text-gray-700"
-                >
-                  Your Blood Group
-                </label>
-                <div className="mt-1">
-                  <input
-                    onChange={e => {
-                      const blood = e.target.value
-                      setUpload(blood)
-                    }}
-                    value={upload.blood}
-                    type="text"
-                    name="bloodGroup"
-                    id="blood-group"
-                    placeholder="Enter your Blood Group"
-                    className="block input input-bordered input-warning w-full max-w-xs rounded-md border-gray-300 py-3 px-4 shadow-sm shadow-gray-500 focus:border-indigo-500 focus:ring-indigo-500"
-                  />
-                </div>
-              </div>
-              <div>
+
+              <div className="mt-5">
                 <label
                   htmlFor="email"
                   className="block text-md font-medium text-gray-700"
@@ -240,6 +217,7 @@ const PersonalForm = () => {
                 </label>
                 <div className="mt-1">
                   <input
+                    required
                     onChange={e => {
                       const email = e.target.value
                       setUpload(email)
@@ -249,12 +227,35 @@ const PersonalForm = () => {
                     name="email"
                     id="email"
                     placeholder="Enter your Email"
-                    className="block input input-bordered input-warning w-full max-w-xs rounded-md border-gray-300 py-3 px-4 shadow-sm shadow-gray-500 focus:border-indigo-500 focus:ring-indigo-500"
+                    className="block input input-bordered input-warning w-full rounded-md border-gray-300 py-3 px-4 shadow-sm shadow-gray-500 focus:border-indigo-500 focus:ring-indigo-500"
+                  />
+                </div>
+              </div>
+              <div className="mt-5">
+                <label
+                  htmlFor="blood-group"
+                  className="block text-md font-medium text-gray-700"
+                >
+                  Your Blood Group
+                </label>
+                <div className="mt-1">
+                  <input
+                    required
+                    onChange={e => {
+                      const blood = e.target.value
+                      setUpload(blood)
+                    }}
+                    value={upload.blood}
+                    type="text"
+                    name="bloodGroup"
+                    id="blood-group"
+                    placeholder="Enter your Blood Group"
+                    className="block input input-bordered input-warning w-full  rounded-md border-gray-300 py-3 px-4 shadow-sm shadow-gray-500 focus:border-indigo-500 focus:ring-indigo-500"
                   />
                 </div>
               </div>
 
-              <div className="sm:col-span-2">
+              <div className="sm:col-span-2 mt-5">
                 <label
                   htmlFor="address"
                   className="block text-md font-medium text-gray-700"
@@ -263,6 +264,7 @@ const PersonalForm = () => {
                 </label>
                 <div className="mt-1">
                   <input
+                    required
                     onChange={e => {
                       const address = e.target.value
                       setUpload(address)
@@ -276,17 +278,18 @@ const PersonalForm = () => {
                   />
                 </div>
               </div>
-              <div className="sm:col-span-2">
+              <div className="sm:col-span-2 grid gap-4 mt-5">
                 <label
                   htmlFor="Phone"
                   className="block text-md font-medium text-gray-700"
                 >
                   Your Phone Number
                 </label>
-                <div id="Phone">
-                  <div className="mt-3 grid lg:flex  items-center gap-4">
+                <div className="grid gap-4" id="Phone">
+                  <div className="items-center gap-3 lg:gap-0 flex lg:grid">
                     <h6 className="text-sm font-semibold">Home:</h6>
                     <input
+                      required
                       onChange={e => {
                         const phoneHome = e.target.value
                         setUpload(phoneHome)
@@ -296,12 +299,13 @@ const PersonalForm = () => {
                       name="phoneHome"
                       id="phone"
                       placeholder="Enter your Home Phone Number"
-                      className="block input input-bordered input-warning w-full  rounded-md border-gray-300 py-3 px-4 shadow-sm shadow-gray-500 focus:border-indigo-500 focus:ring-indigo-500"
+                      className="block mt-3 input input-bordered input-warning w-full  rounded-md border-gray-300 py-3 px-4 shadow-sm shadow-gray-500 focus:border-indigo-500 focus:ring-indigo-500"
                     />
                   </div>
-                  <div className="mt-6 grid lg:flex items-center gap-2">
+                  <div className=" items-center gap-2 lg:gap-0 flex lg:grid">
                     <h6 className="text-sm font-semibold">Mobile:</h6>
                     <input
+                      required
                       onChange={e => {
                         const phoneMobile = e.target.value
                         setUpload(phoneMobile)
@@ -311,14 +315,14 @@ const PersonalForm = () => {
                       name="phoneMobile"
                       id="phone"
                       placeholder="Enter your Mobile Phone Number"
-                      className="block input input-bordered input-warning w-full  rounded-md border-gray-300 py-3 px-4 shadow-sm shadow-gray-500 focus:border-indigo-500 focus:ring-indigo-500"
+                      className="block mt-3 input input-bordered input-warning w-full  rounded-md border-gray-300 py-3 px-4 shadow-sm shadow-gray-500 focus:border-indigo-500 focus:ring-indigo-500"
                     />
                   </div>
                 </div>
               </div>
 
-              <div className="sm:col-span-2">
-                <div className="flex items-start">
+              <div className="mt-5 col-span-2">
+                <div className="flex col-span-2 items-start">
                   <div className="flex-shrink-0">
                     {/* <Switch
                       checked={agreed}
@@ -338,14 +342,15 @@ const PersonalForm = () => {
                       />
                     </Switch> */}
                   </div>
-                  <div className="grid gap-10 lg:flex lg:gap-24 ">
+                  <div className="flex col-span-2 gap-5 lg:gap-16">
                     <fieldset className="sm:col-span-2">
                       <legend className="block text-md font-medium text-gray-700">
                         Are you above 18 years?
                       </legend>
-                      <div className="mt-4 grid grid-cols-1 gap-y-4">
+                      <div className="mt-4 grid grid-cols-1 gap-y-2">
                         <div className="flex items-center">
                           <input
+                            required
                             onChange={e => {
                               const age = e.target.value
                               setUpload(age)
@@ -365,6 +370,7 @@ const PersonalForm = () => {
 
                         <div className="flex items-center">
                           <input
+                            required
                             onChange={e => {
                               const age = e.target.value
                               setUpload(age)
@@ -387,9 +393,10 @@ const PersonalForm = () => {
                       <legend className="block text-md font-medium text-gray-700">
                         Residencial status
                       </legend>
-                      <div className="mt-4 grid grid-cols-1 gap-y-4">
+                      <div className="mt-4 grid grid-cols-1 gap-y-2">
                         <div className="flex items-center">
                           <input
+                            required
                             onChange={e => {
                               const status = e.target.value
                               setUpload(status)
@@ -409,6 +416,7 @@ const PersonalForm = () => {
 
                         <div className="flex items-center">
                           <input
+                            required
                             onChange={e => {
                               const status = e.target.value
                               setUpload(status)
@@ -427,6 +435,7 @@ const PersonalForm = () => {
                         </div>
                         <div className="flex items-center">
                           <input
+                            required
                             onChange={e => {
                               const status = e.target.value
                               setUpload(status)
@@ -453,7 +462,7 @@ const PersonalForm = () => {
                   Details of Minor Children
                 </h2>
               </div>
-              <div>
+              <div className="mt-5">
                 <label
                   htmlFor="children-name"
                   className="block text-md font-medium text-gray-700"
@@ -462,6 +471,7 @@ const PersonalForm = () => {
                 </label>
                 <div className="mt-1">
                   <input
+                    required
                     onChange={e => {
                       const childrenName = e.target.value
                       setUpload(childrenName)
@@ -475,7 +485,7 @@ const PersonalForm = () => {
                   />
                 </div>
               </div>
-              <div>
+              <div className="mt-5">
                 <label
                   htmlFor="hobbies"
                   className="block text-md font-medium text-gray-700"
@@ -484,6 +494,7 @@ const PersonalForm = () => {
                 </label>
                 <div className="mt-1">
                   <input
+                    required
                     onChange={e => {
                       const hobbies = e.target.value
                       setUpload(hobbies)
@@ -497,13 +508,14 @@ const PersonalForm = () => {
                   />
                 </div>
               </div>
-              <fieldset className="sm:col-span-2">
+              <fieldset className="col-span-2 mt-5">
                 <legend className="block text-md font-medium text-gray-700">
                   Gender
                 </legend>
-                <div className="mt-4 grid grid-cols-1 gap-y-4">
+                <div className="mt-4 flex gap-x-4 ">
                   <div className="flex items-center">
                     <input
+                      required
                       onChange={e => {
                         const gender = e.target.value
                         setUpload(gender)
@@ -521,6 +533,7 @@ const PersonalForm = () => {
 
                   <div className="flex items-center">
                     <input
+                      required
                       onChange={e => {
                         const gender = e.target.value
                         setUpload(gender)
@@ -539,6 +552,7 @@ const PersonalForm = () => {
                   </div>
                   <div className="flex items-center">
                     <input
+                      required
                       onChange={e => {
                         const gender = e.target.value
                         setUpload(gender)
@@ -557,22 +571,22 @@ const PersonalForm = () => {
                   </div>
                 </div>
               </fieldset>
-              <div className="sm:col-span-2">
+              <div className="col-span-2">
                 <h3 className="text-2xl font-bold text-center py-12">
                   MEMBERSHIP INFORMATION
                 </h3>
                 <p className="text-md">
-                  <span className="font-bold">NOTICE :</span> <br></br> Marathi
-                  Association Perth (MAP) reserves the right to verify the
-                  information provided in this application in accordance with
-                  and without limitation to the Constitution and bylaws of MAP.
-                  If MAP determines, in its sole discretion, that any individual
-                  on this application no longer subscribes to the objectives of
-                  MAP or that false or misleading information was provided, MAP
-                  may reject this application or cancel the membership of any or
-                  all persons listed in this application form. Membership fees
-                  are non-refundable in any event. Annual Membership Fee is due
-                  on 30th June every year
+                  <span className="font-bold text-sm">NOTICE :</span> <br></br>{" "}
+                  Marathi Association Perth (MAP) reserves the right to verify
+                  the information provided in this application in accordance
+                  with and without limitation to the Constitution and bylaws of
+                  MAP. If MAP determines, in its sole discretion, that any
+                  individual on this application no longer subscribes to the
+                  objectives of MAP or that false or misleading information was
+                  provided, MAP may reject this application or cancel the
+                  membership of any or all persons listed in this application
+                  form. Membership fees are non-refundable in any event. Annual
+                  Membership Fee is due on 30th June every year
                 </p>
                 <div className="form-control pt-5">
                   <label className=" flex cursor-pointer">

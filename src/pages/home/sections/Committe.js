@@ -12,7 +12,11 @@ const Committee = ({ committees, title, des }) => {
       <Wrapper>
         {committees?.map(committee => (
           <ImgWrapper key={committee.id}>
-            <img src={committee.committeeImage.url} alt="" />
+            <img
+              className="object-cover w-[100%] h-[auto]"
+              src={committee.committeeImage.url}
+              alt=""
+            />
 
             <div className="committee1">
               <h2>{committee.name}</h2>
@@ -33,6 +37,9 @@ const Wrapper = styled.section`
   display: flex;
   justify-content: center;
   gap: 80px;
+  @media (max-width: 768px) {
+    display: grid;
+  }
 `
 
 const MainWrapper = styled.section`
@@ -83,6 +90,11 @@ const ImgWrapper = styled.div`
       /* identical to box height */
       color: #ed8f1d;
     }
+  }
+  transition: 0.5s;
+  &:hover {
+    transform: scale(1.1);
+    z-index: 1;
   }
 `
 const Explore = styled.p`
