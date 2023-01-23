@@ -575,7 +575,7 @@ const PersonalForm = () => {
                 <h3 className="text-2xl font-bold text-center py-12">
                   MEMBERSHIP INFORMATION
                 </h3>
-                <p className="text-md">
+                <p className="text-[16px]">
                   <span className="font-bold text-sm">NOTICE :</span> <br></br>{" "}
                   Marathi Association Perth (MAP) reserves the right to verify
                   the information provided in this application in accordance
