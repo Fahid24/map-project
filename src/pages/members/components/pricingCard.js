@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { BsCheckCircleFill } from "react-icons/bs"
 import { loadStripe } from "@stripe/stripe-js"
+import { toast, ToastContainer } from "react-toastify"
 // import StripeCheckout from "react-stripe-checkout"
 
 const PricingCard = ({ title, des, price, facilities, color }) => {
@@ -24,7 +25,7 @@ const PricingCard = ({ title, des, price, facilities, color }) => {
     }
 
     const response = await fetch(
-      "http://localhost:5000/api/create-checkout-session",
+      "https://map-backend-mauve.vercel.app/api/create-checkout-session",
       {
         method: "POST",
         headers: headers,
@@ -37,9 +38,10 @@ const PricingCard = ({ title, des, price, facilities, color }) => {
     const result = stripe.redirectToCheckout({
       sessionId: session.id,
     })
-
-    if (result.error) {
-      console.log(result.error)
+    if (result) {
+    }
+    if (!result.error) {
+      toast.success("successfully paid")
     }
   }
 
@@ -79,6 +81,7 @@ const PricingCard = ({ title, des, price, facilities, color }) => {
         </Button>
         {/* </StripeCheckout> */}
       </Wrapper2>
+      <ToastContainer />
     </MainWrapper>
   )
 }
