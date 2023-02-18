@@ -2,19 +2,23 @@ const stripe = require("stripe")(
   "sk_test_51Lcq7BLXHvCk9rLhWD8GgCOiyyKah7AULcQZISk7GuaSbW27DpP4JlQx7DGi1xpKOPAMvmp3poTIdOXswh6PIUTn0091tMJuqJ"
 )
 
-exports.handler = async function (event) {
-  const { tokenId, email, name, description, amount } = JSON.parse(event.body)
+exports.handler = async (event, context) => {
+  const { amount } = JSON.parse(event.body)
 
-  const customer = await stripe.customers.create({
-    description: email,
-    source: tokenId,
-  })
-
-  await stripe.charges.create({
-    customer: customer.id,
-    amount,
-    name,
-    description,
-    currency: "usd",
-  })
+  try {
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount,
+      currency: "usd",
+    })
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ clientSecret: paymentIntent.client_secret }),
+    }
+  } catch (error) {
+    console.error(error)
+    return {
+      statusCode: 500,
+      body: JSON.stringify({ error: error.message }),
+    }
+  }
 }

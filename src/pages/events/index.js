@@ -1,6 +1,8 @@
 import { graphql } from "gatsby"
 import React from "react"
 import Layout from "../../components/layout"
+import Loading from "../../components/Loading/Loading"
+import Seo from "../../components/seo"
 import BecomeMember from "../home/sections/BecomeMember "
 import EventsSection from "./sections/EventsSection"
 
@@ -13,6 +15,9 @@ const EventsIndex = ({ data }) => {
   const ctaTitle = data.contentfulCta.title
   const ctaImg = data.contentfulCta.image.url
   // console.log(data)
+  if (!eventData || eventData.length === 0) {
+    return <Loading />
+  }
   return (
     <Layout>
       <EventsSection title={title} des={des} banner={banner} events={events} />
@@ -22,6 +27,7 @@ const EventsIndex = ({ data }) => {
 }
 
 export default EventsIndex
+export const Head = () => <Seo title="Upcoming Events" />
 
 export const query = graphql`
   query EventsQuery {

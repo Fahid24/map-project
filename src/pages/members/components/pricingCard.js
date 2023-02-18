@@ -2,11 +2,11 @@ import React from "react"
 import styled from "styled-components"
 import { BsCheckCircleFill } from "react-icons/bs"
 import { loadStripe } from "@stripe/stripe-js"
-import { toast, ToastContainer } from "react-toastify"
 // import StripeCheckout from "react-stripe-checkout"
 
-const PricingCard = ({ title, des, price, facilities, color }) => {
+const PricingCard = ({ title, des, price, facilities, color, setLoader }) => {
   const amount = price?.slice(1, 3)
+
   // console.log(amount)
   const product = {
     name: `Marathi Association Perth: ${title}`,
@@ -15,7 +15,9 @@ const PricingCard = ({ title, des, price, facilities, color }) => {
     description: des,
     quantity: 1,
   }
+
   const handlePurchase = async () => {
+    setLoader(true)
     const stripe = await loadStripe(
       "pk_test_51Lcq7BLXHvCk9rLhXdU4ykecPymSFIEEVVgxLRJGZxQppaX7PGGsqnNUFzb3fKGJFPgusEnB0nLXuOA9UpjygXrZ00zoGfcUHe"
     )
@@ -39,9 +41,9 @@ const PricingCard = ({ title, des, price, facilities, color }) => {
       sessionId: session.id,
     })
     if (result) {
+      setLoader(true)
     }
     if (!result.error) {
-      toast.success("successfully paid")
     }
   }
 
@@ -69,26 +71,24 @@ const PricingCard = ({ title, des, price, facilities, color }) => {
           ))}
         </ul>
         {/* <StripeCheckout
-          amount={amount}
-          image="https://i.ibb.co/ysGmkZj/map-logo-removebg-preview-1.png"
-          token={handlePurchase}
-          stripeKey={
-            "pk_test_51Lcq7BLXHvCk9rLhXdU4ykecPymSFIEEVVgxLRJGZxQppaX7PGGsqnNUFzb3fKGJFPgusEnB0nLXuOA9UpjygXrZ00zoGfcUHe"
-          }
-        > */}
+        amount={amount}
+        image="https://i.ibb.co/ysGmkZj/map-logo-removebg-preview-1.png"
+        token={handlePurchase}
+        stripeKey={
+          "pk_test_51Lcq7BLXHvCk9rLhXdU4ykecPymSFIEEVVgxLRJGZxQppaX7PGGsqnNUFzb3fKGJFPgusEnB0nLXuOA9UpjygXrZ00zoGfcUHe"
+        }
+      > */}
         <Button className="" onClick={handlePurchase} color={color}>
           become a member
         </Button>
         {/* </StripeCheckout> */}
       </Wrapper2>
-      <ToastContainer />
     </MainWrapper>
   )
 }
 const MainWrapper = styled.div`
-  ${({ color }) => color && "background:#ED8F1D;;"}
+  ${({ color }) => (color ? "background:#ED8F1D;" : "white;")}
   ${({ color }) => color && "color:white;"}
-  ${({ color }) => color && "transform: scale(1.06);"}
 
   border: 1px solid #ed8f1d;
   display: grid;

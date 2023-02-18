@@ -17,7 +17,7 @@ const Slider = ({ slider }) => {
         {slider?.map(u => (
           <SwiperSlide key={u.id}>
             <img
-              className="object-cover w-[100%] h-[auto] mt-[92px]"
+              className="object-cover w-[100%] h-[90vh] mt-[92px]"
               src={u.sliderImage.url}
               alt="slider"
             />

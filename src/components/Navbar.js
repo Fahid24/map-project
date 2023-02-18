@@ -2,11 +2,12 @@ import React from "react"
 // import { StaticImage } from "gatsby-plugin-image"
 import { Link } from "gatsby"
 import logo from "../../static/logos/map-logo-removebg-preview 1.png"
+import styled from "styled-components"
 
 const Navbar = () => {
   return (
-    <div className="navbar fixed shadow-xl lg:px-20 flex lg:justify-center top-0 z-10 bg-base-100">
-      <div className="navbar-start">
+    <div className="navbar fixed shadow-xl lg:px-20 flex space-x-80 lg:justify-center top-0 z-10 bg-base-100">
+      <Wrapper className="">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
             <svg
@@ -26,29 +27,35 @@ const Navbar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            className=" py-5 dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
-            <li className="text-md font-bold-md">
+            <li className="text-md pl-4 font-bold-md">
               <Link to="/">Home</Link>
             </li>
-            <li className="text-md font-bold-md">
+            <li className="text-md pl-4 font-bold-md">
               <Link to="/events">Events</Link>
             </li>
-            <li className="text-md font-bold-md">
+            <li className="text-md pl-4 font-bold-md">
               <Link to="/updates">Updates</Link>
             </li>
-            <li className="text-md font-bold-md">
+            <li className="text-md pl-4 font-bold-md">
               <Link to="/about">About Us</Link>
             </li>
-            <li className="text-md font-bold-md">
-              <Link to="/contact">Contact Us</Link>
+            <li className="text-md pl-4 font-bold-md">
+              <Link to="/contact">Contact Us </Link>
             </li>
           </ul>
         </div>
         <Link to="/" className="">
           <img className="w-20" src={logo} alt="" />
         </Link>
-      </div>
+        <Button
+          to="/members"
+          className="btn ml-16 btn-sm btn- text-white rounded-full text-md font-bold-md bg-[#ED8F1D]"
+        >
+          Become a Member
+        </Button>
+      </Wrapper>
 
       <div className="navbar-center gap-10 hidden lg:flex">
         <ul className="menu gap-6 menu-horizontal px-1">
@@ -78,5 +85,26 @@ const Navbar = () => {
     </div>
   )
 }
+
+const Wrapper = styled.div`
+  /* flex justify-around items-center */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  div {
+    ul {
+      display: grid;
+      gap: 20px;
+    }
+  }
+`
+
+const Button = styled(Link)`
+  display: none;
+  @media (max-width: 768px) {
+    display: flex;
+    align-items: center;
+  }
+`
 
 export default Navbar

@@ -1,13 +1,13 @@
 import React from "react"
 import { useInView } from "react-intersection-observer"
 import styled, { keyframes } from "styled-components"
-import mobile from "../images/bg-mobile.jpg"
+// import mobile from "../images/bg-mobile.jpg"
 
 const Banner = ({ background, title, des }) => {
   const { ref, inView } = useInView()
 
   return (
-    <Wrapper ref={ref} background={background} mobile={mobile}>
+    <Wrapper className="bg-cover" ref={ref} background={background}>
       <TextWrapper inView={inView}>
         <h1>{title}</h1>
         <p>{des}</p>
@@ -38,14 +38,17 @@ const bannerAnimation = keyframes`
 
 const Wrapper = styled.section`
   background-image: url(${({ background }) => background});
+  box-shadow: rgba(0, 0, 0, 0.6) 0px -320px 70px -58px inset;
   background-repeat: no-repeat;
-  background-attachment: fixed;
   background-position: center;
+  background-size: cover;
   background-size: 100%;
   margin-top: 90px;
 
   @media (max-width: 768px) {
-    background-image: url(${({ mobile }) => mobile});
+    /* background-image: url(${({ mobile }) => mobile}); */
+    background-size: 400px 991px;
+    object-fit: cover;
   }
 `
 const TextWrapper = styled.div`

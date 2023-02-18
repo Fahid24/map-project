@@ -20,21 +20,21 @@ const AboutUsHome = ({ title, des, img1, img2, img3 }) => {
         </Link>
         <Image3
           img3Viewed={img3Viewed}
-          className="-ml-12 mt-[32px] lg:visible"
+          className="lg:-ml-12 lg:mt-[32px] lg:visible"
           src={img3}
           alt=""
         />
       </Wrapper>
       <Image1
         img1Viewed={img1Viewed}
-        className="big-img ml-14 mb-[100px] max-w-[700px]"
+        className="big-img lg:ml-14  lg:mb-[100px] lg:max-w-[700px]"
         src={img2}
         alt=""
       />
 
       <Image2
         img2Viewed={img2Viewed}
-        className="absolute top-[102px] right-[220px]"
+        className="absolute  lg:top-[102px] lg:right-[220px]"
         src={img1}
         alt=""
       />
@@ -79,8 +79,9 @@ const MainWrapper = styled.section`
     display: flex;
     text-align: center;
     justify-content: center;
+    position: relative;
+    overflow: hidden;
     img {
-      display: none;
     }
   }
 `
@@ -110,15 +111,15 @@ const Wrapper = styled.section`
     }
   }
   @media (max-width: 768px) {
-    padding: 50px 0 50px 0px;
-    justify-items: center;
-
+    justify-items: left;
+    gap: 20px;
+    padding: 200px 20px 400px 20px;
     button {
       max-width: 100%;
       max-height: auto;
-      padding: 10px 30px;
-      font-size: 22px;
-      font-weight: 700;
+      padding: 10px 20px;
+      font-weight: 600;
+      font-size: 20px;
     }
   }
 `
@@ -147,7 +148,19 @@ const TextWrapper = styled.section`
       : "none"};
 
   @media (max-width: 768px) {
-    padding: 10px;
+    /* animation: none; */
+    h1 {
+      font-weight: 600;
+      font-size: 30px;
+      line-height: 45px;
+      text-align: left;
+    }
+    p {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 24px;
+      text-align: left;
+    }
   }
 `
 
@@ -158,6 +171,16 @@ const Image1 = styled.img`
           ${cardAnimation} 3s cubic-bezier(0.075, 0.82, 0.165, 1) forwards
         `
       : "none"};
+
+  @media (max-width: 768px) {
+    animation: none;
+    max-width: 300px;
+    height: 300px;
+    position: absolute;
+    right: 0;
+    bottom: 100px;
+    right: -60px;
+  }
 `
 const Image2 = styled.img`
   animation: ${({ img2Viewed }) =>
@@ -166,6 +189,14 @@ const Image2 = styled.img`
           ${img2Animation} 5s cubic-bezier(0.075, 0.82, 0.165, 1) forwards
         `
       : "none"};
+  @media (max-width: 768px) {
+    animation: none;
+    max-width: 300px;
+    position: absolute;
+    right: -100px;
+    top: -50px;
+    margin: 0;
+  }
 `
 const Image3 = styled.img`
   animation: ${({ img3Viewed }) =>
@@ -174,4 +205,11 @@ const Image3 = styled.img`
           ${img3Animation} 3s cubic-bezier(0.075, 0.82, 0.165, 1) forwards
         `
       : "none"};
+  @media (max-width: 768px) {
+    animation: none;
+    max-width: 300px;
+    position: absolute;
+    bottom: 0;
+    left: -70px;
+  }
 `

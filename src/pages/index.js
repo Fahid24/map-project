@@ -8,6 +8,8 @@ import AboutUsHome from "./home/sections/AboutUsHome"
 import Committee from "./home/sections/Committe"
 import BecomeMember from "./home/sections/BecomeMember "
 import { graphql } from "gatsby"
+import Loading from "../components/Loading/Loading"
+import CheckoutForm from "../components/CheckoutForm "
 
 const IndexPage = ({ data }) => {
   const homeData = data?.allContentfulHomePage.edges[0].node
@@ -25,6 +27,10 @@ const IndexPage = ({ data }) => {
   const committeeDes = homeData.homeCommitteeDes.homeCommitteeDes
   const ctaTitle = data.contentfulCta.title
   const ctaImage = data.contentfulCta.image.url
+
+  if (!homeData || homeData.length === 0) {
+    return <Loading />
+  }
 
   return (
     <Layout>

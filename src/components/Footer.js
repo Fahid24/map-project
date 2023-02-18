@@ -1,3 +1,4 @@
+import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
 import logo from "../../static/logos/map-logo-removebg-preview 1.png"
@@ -21,25 +22,43 @@ const Footer = () => {
         <ContentWrapper2 className="mt-12">
           <h3>Important Links</h3>
           <ul>
-            <li>Upcoming events</li>
-            <li>Latest News</li>
-            <li>Gallary</li>
-            <li>About Us</li>
+            <Link to="/events">
+              <li>Upcoming events</li>
+            </Link>
+            <Link to="/updates">
+              <li>Latest News</li>
+            </Link>
+            <Link to="/about">
+              <li>About Us</li>
+            </Link>
+            <Link to="/contact">
+              <li>Contact Us</li>
+            </Link>
           </ul>
         </ContentWrapper2>
         <ContentWrapper2 className="mt-12">
           <h3>Contact us</h3>
           <ul>
-            <li>info@Marathiassosicationperth.com.au</li>
-            <li>0457849263</li>
-            <li>4 Tanga Close Southern river</li>
+            <li>
+              <a href="mailto:info@marathiassosicationperth.com.au">
+                info@marathiassosicationperth.com.au
+              </a>
+            </li>
+            <li>
+              <a href="tel:0457849263">0457849263</a>
+            </li>
+            <li>
+              <Link to="https://www.google.com/maps/place/4+Tanga+Cl,+Southern+River+WA+6110,+Australia/@-32.0929672,115.9404304,17z/data=!3m1!4b1!4m6!3m5!1s0x2a329676e89b8605:0xc774920af1791333!8m2!3d-32.0929718!4d115.9426191!16s%2Fg%2F11c12wzvmx">
+                4 Tanga Close Southern river
+              </Link>
+            </li>
           </ul>
         </ContentWrapper2>
       </Wrapper>
-      <p className="text-center mt-[35px] text-[#B6B6B6]">
+      <p className="text-center text-lg mt-[35px] text-[#B6B6B6]">
         © All rights reserved by marathi assosication Perth
       </p>
-      <p className="text-center pt-2 text-[#B6B6B6]">
+      <p className="text-center text-lg pt-2 text-[#B6B6B6]">
         website developed by PrimeSoftech
       </p>
     </MainWrapper>
@@ -115,7 +134,6 @@ const ContentWrapper2 = styled.div`
     line-height: 27px;
     /* identical to box height */
     color: #b6b6b6;
-    text-transform: capitalize;
     cursor: pointer;
     &:hover {
       color: #ed8f1d;

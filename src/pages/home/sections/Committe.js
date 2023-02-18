@@ -96,6 +96,11 @@ const ImgWrapper = styled.div`
     transform: scale(1.1);
     z-index: 1;
   }
+  @media (max-width: 768px) {
+    &:hover {
+      transform: scale(1);
+    }
+  }
 `
 const Explore = styled.p`
   cursor: pointer;

@@ -1,13 +1,12 @@
 import React from "react"
 import styled from "styled-components"
-import img from "../../../images/img_lights.jpg"
 
-const UpdatesCard = ({ title, date }) => {
+const UpdatesCard = ({ title, date, img }) => {
   return (
     <Wrapper img={img}>
       {/* <img src={img} /> */}
       <h2>{title}</h2>
-      <p>{date}</p>
+      <p>{date}</p> 
     </Wrapper>
   )
 }

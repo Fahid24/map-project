@@ -1,3 +1,4 @@
+import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
 
@@ -7,7 +8,7 @@ const QuestionsSection = () => {
       <h1>
         If you have any questions or suggestion we’d love to Hear from you
       </h1>
-      <button>Become a member</button>
+      <Button to="/contact">Contact with us</Button>
     </Wrapper>
   )
 }
@@ -28,16 +29,6 @@ const Wrapper = styled.div`
     color: #ffffff;
   }
 
-  button {
-    padding: 12px 60px;
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 36px;
-    text-transform: capitalize;
-    background: white;
-    color: #ed8f1d;
-    border-radius: 40px;
-  }
   @media (max-width: 768px) {
     margin: 0;
     border-radius: 0;
@@ -48,5 +39,16 @@ const Wrapper = styled.div`
       font-size: 28px;
     }
   }
+`
+const Button = styled(Link)`
+  padding: 12px 60px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 36px;
+  text-transform: capitalize;
+  background: white;
+  color: #ed8f1d;
+  border-radius: 40px;
+  cursor: pointer;
 `
 export default QuestionsSection

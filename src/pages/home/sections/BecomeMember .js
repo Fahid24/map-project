@@ -10,9 +10,9 @@ const BecomeMember = ({ title, image }) => {
     <Wrapper ref={ref}>
       <TextWrapper inView={inView}>
         <h1>{title}</h1>
-        <Link to="/members">
+        <Button to="/members">
           <button className="">Become a member</button>
-        </Link>
+        </Button>
       </TextWrapper>
       <Image inView={inView} src={image} alt="" />
     </Wrapper>
@@ -85,22 +85,7 @@ const TextWrapper = styled.div`
 
     color: #ffffff;
   }
-  button {
-    justify-self: start;
-    font-weight: 500;
-    font-size: 33px;
-    /* identical to box height */
-    padding: 13px 70px;
-    border-radius: 40px;
-    text-transform: capitalize;
-    background: white;
-    color: #ed8f1d;
-    transition: 0.1s;
-    &:focus {
-      outline: 2px solid white;
-      border: 3px solid #ed8f1d;
-    }
-  }
+
   @media (max-width: 768px) {
     gap: 40px;
 
@@ -115,6 +100,27 @@ const TextWrapper = styled.div`
       padding: 5px 20px;
       font-size: 28px;
     }
+  }
+`
+
+const Button = styled(Link)`
+  font-weight: 500;
+  justify-self: start;
+  font-size: 33px;
+  padding: 13px 70px;
+  border-radius: 40px;
+  text-transform: capitalize;
+  background: white;
+  color: #ed8f1d;
+  transition: 0.1s;
+  &:focus {
+    outline: 2px solid white;
+    border: 3px solid #ed8f1d;
+  }
+  @media (max-width: 768px) {
+    justify-self: center;
+    padding: 5px 20px;
+    font-size: 28px;
   }
 `
 

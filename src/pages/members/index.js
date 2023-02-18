@@ -2,6 +2,8 @@ import { graphql } from "gatsby"
 import React from "react"
 import Banner from "../../components/banner"
 import Layout from "../../components/layout"
+import Loading from "../../components/Loading/Loading"
+import Seo from "../../components/seo"
 import PriceSection from "./sections/PriceSection"
 import QuestionsSection from "./sections/QuestionsSection"
 
@@ -12,6 +14,11 @@ const index = ({ data }) => {
   const des = memberData.description
   const cards = memberData.pricingCards
   const text = memberData.memberCtaText
+
+  if (!memberData || memberData.length === 0) {
+    return <Loading />
+  }
+
   return (
     <Layout>
       <Banner title={title} des={des} background={banner} />
@@ -22,6 +29,7 @@ const index = ({ data }) => {
 }
 
 export default index
+export const Head = () => <Seo title="Become a Member" />
 
 export const query = graphql`
   query AboutQuery {
@@ -44,6 +52,7 @@ export const query = graphql`
             facility3
             color
             price
+            slug
           }
           memberCtaText
         }
