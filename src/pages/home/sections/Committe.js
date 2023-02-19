@@ -79,8 +79,8 @@ const ImgWrapper = styled.div`
     left: 50px;
 
     h2 {
-      font-weight: 700;
-      font-size: 32px;
+      font-weight: 600;
+      font-size: 30px;
       line-height: 48px;
       color: white;
     }
@@ -89,6 +89,8 @@ const ImgWrapper = styled.div`
       line-height: 36px;
       /* identical to box height */
       color: #ed8f1d;
+    }
+    @media (max-width: 768px) {
     }
   }
   transition: 0.5s;

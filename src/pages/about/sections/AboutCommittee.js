@@ -56,6 +56,12 @@ const TextWrapper = styled.div`
     text-align: center;
     max-width: 865px;
   }
+  @media (max-width: 768px) {
+    h1 {
+      font-weight: 700;
+      font-size: 34px;
+    }
+  }
 `
 
 const ImgWrapper = styled.div`

@@ -1,7 +1,8 @@
 import { addDoc, collection } from "firebase/firestore"
-import { navigate } from "gatsby"
+import { graphql } from "gatsby"
 import React from "react"
 import { useState } from "react"
+import StripeCheckout from "react-stripe-checkout"
 import { ToastContainer, toast } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 import { uid } from "uid"
@@ -10,93 +11,108 @@ import Loading from "../../components/Loading/Loading"
 import Seo from "../../components/seo"
 import db from "../../firebase-config"
 
-const Index = () => {
+const Index = data => {
+  const soloData =
+    data?.data.allContentfulMemberPage.edges[0].node.pricingCards[0]
   const [agreed1, setAgreed1] = useState(false)
   const [agreed2, setAgreed2] = useState(false)
   const [agreed3, setAgreed3] = useState(false)
-  const [loader, setLoader] = useState(false)
   const _id = uid()
-  // console.log(data?.data.allContentfulMemberPage.edges[0].node.pricingCards[0])
-  const [upload, setUpload] = useState({
-    name: "",
-    profession: "",
-    blood: "",
-    email: "",
-    address: "",
-    phoneHome: "",
-    phoneMobile: "",
-    status: "",
-    age: "",
-    childrenName: "",
-    hobbies: "",
-    gender: "",
-  })
-  const submit = async e => {
-    e.preventDefault()
-    const name = e.target.name.value
-    const profession = e.target.profession.value
-    const blood = e.target.bloodGroup.value
-    const email = e.target.email.value
-    const address = e.target.address.value
-    const phoneHome = e.target.phoneHome.value
-    const phoneMobile = e.target.phoneMobile.value
-    const status = e.target.status.value
-    const age = e.target.age.value
-    const childrenName = e.target.childrenName.value
-    const hobbies = e.target.hobbies.value
-    const gender = e.target.gender.value
 
-    setLoader(true)
+  const [isProcessing, setIsProcessing] = useState(false)
+  const [checkoutError, setCheckoutError] = useState(null)
 
+  const [name, setName] = useState("")
+  const [profession, setProfession] = useState("")
+  const [blood, setBlood] = useState("")
+  const [email, setEmail] = useState("")
+  const [address, setAddress] = useState("")
+  const [phoneHome, setPhoneHome] = useState("")
+  const [phoneMobile, setPhoneMobile] = useState("")
+  const [status, setStatus] = useState("")
+  const [age, setAge] = useState("")
+  const [numberIndia, setNumberIndia] = useState("")
+  const amount = soloData.price?.slice(1, 3) * 100
+
+  const handleToken = async token => {
+    setIsProcessing(true)
     try {
-      const docRef = await addDoc(collection(db, "from-data"), {
-        id: _id,
-        name: name,
-        profession: profession,
-        blood: blood,
-        email: email,
-        address: address,
-        phoneHome: phoneHome,
-        phoneMobile: phoneMobile,
-        status: status,
-        age: age,
-        childrenName: childrenName,
-        hobbies: hobbies,
-        gender: gender,
-        time: new Date(),
-      })
-      //   setId(docRef.id)
-      setUpload({
-        name: "",
-        profession: "",
-        blood: "",
-        email: "",
-        address: "",
-        phoneHome: "",
-        phoneMobile: "",
-        status: "",
-        age: "",
-        childrenName: "",
-        hobbies: "",
-        gender: "",
-      })
-      setLoader(true)
-      navigate("/success-massege")
-      toast.success("Successfully added information", docRef.id)
-    } catch (e) {
-      toast.error("Error adding document:", e)
-      navigate("/error-massege")
+      const response = await fetch(
+        "https://map-backend-mauve.vercel.app/charge",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            token,
+            amount,
+            // the amount in cents
+          }),
+        }
+      )
+      const data = await response.json()
+      setIsProcessing(false)
+      try {
+        const docRef = addDoc(collection(db, "from-data"), {
+          id: _id,
+          name: name,
+          profession: profession,
+          blood: blood,
+          email: email,
+          address: address,
+          phoneHome: phoneHome,
+          phoneMobile: phoneMobile,
+          status: status,
+          age: age,
+          time: new Date(),
+          package: soloData.title,
+          numberIndia,
+        })
+        //   setId(docRef.id)
+        setName("")
+        setProfession("")
+        setBlood("")
+        setEmail("")
+        setAddress("")
+        setPhoneHome("")
+        setPhoneMobile("")
+        setStatus("")
+        setAge("")
+        setNumberIndia("")
+        setAgreed1(false)
+        setAgreed2(false)
+        setAgreed3(false)
+        toast.success("Successfully added information")
+      } catch (e) {
+        toast.error("Error adding document:", e)
+      }
+    } catch (error) {
+      if (error) {
+        toast.error(
+          "An error occurred while processing your payment. Please try again."
+        )
+      }
+
+      setCheckoutError(
+        "An error occurred while processing your payment. Please try again."
+      )
+      setIsProcessing(false)
     }
   }
 
-  if (loader) {
+  const submit = async e => {
+    e.preventDefault()
+  }
+
+  if (!soloData) {
     return <Loading />
   }
 
   return (
     <Layout>
-      <h1 className="text-center text-[22px] font-bold lg:text-5xl text-white py-10 bg-[#ed8f1d] mt-20 lg:font-bold">
-        MEMBERSHIP APPLICATION FORM
+      <h1 className="text-center text-[18px] uppercase font-bold lg:text-5xl text-white py-10 bg-[#ed8f1d] mt-20 lg:font-bold">
+        {soloData.title} MEMBERSHIP APPLICATION FORM
       </h1>
       <div className="m-10">
         <div className="overflow-hidden bg-white py-16 px-6 lg:px-8 lg:py-24">
@@ -186,12 +202,12 @@ const Index = () => {
                       required
                       onChange={e => {
                         const name = e.target.value
-                        setUpload(name)
+                        setName(name)
                       }}
                       type="text"
                       name="name"
                       id="name"
-                      value={upload.name}
+                      value={name}
                       autoComplete="family-name"
                       placeholder="Enter your name"
                       className="block input input-bordered input-warning w-full  rounded-md border-gray-300 py-3 px-4 shadow-sm shadow-gray-500 focus:border-indigo-500 focus:ring-indigo-500"
@@ -210,9 +226,9 @@ const Index = () => {
                       required
                       onChange={e => {
                         const profession = e.target.value
-                        setUpload(profession)
+                        setProfession(profession)
                       }}
-                      value={upload.profession}
+                      value={profession}
                       type="text"
                       name="profession"
                       id="profession"
@@ -234,9 +250,9 @@ const Index = () => {
                       required
                       onChange={e => {
                         const email = e.target.value
-                        setUpload(email)
+                        setEmail(email)
                       }}
-                      value={upload.email}
+                      value={email}
                       type="email"
                       name="email"
                       id="email"
@@ -257,9 +273,9 @@ const Index = () => {
                       required
                       onChange={e => {
                         const blood = e.target.value
-                        setUpload(blood)
+                        setBlood(blood)
                       }}
-                      value={upload.blood}
+                      value={blood}
                       type="text"
                       name="bloodGroup"
                       id="blood-group"
@@ -281,9 +297,9 @@ const Index = () => {
                       required
                       onChange={e => {
                         const address = e.target.value
-                        setUpload(address)
+                        setAddress(address)
                       }}
-                      value={upload.address}
+                      value={address}
                       type="text"
                       name="address"
                       id="address"
@@ -306,9 +322,9 @@ const Index = () => {
                         required
                         onChange={e => {
                           const phoneHome = e.target.value
-                          setUpload(phoneHome)
+                          setPhoneHome(phoneHome)
                         }}
-                        value={upload.phoneHome}
+                        value={phoneHome}
                         type="text"
                         name="phoneHome"
                         id="phone"
@@ -322,9 +338,9 @@ const Index = () => {
                         required
                         onChange={e => {
                           const phoneMobile = e.target.value
-                          setUpload(phoneMobile)
+                          setPhoneMobile(phoneMobile)
                         }}
-                        value={upload.phoneMobile}
+                        value={phoneMobile}
                         type="text"
                         name="phoneMobile"
                         id="phone"
@@ -335,27 +351,32 @@ const Index = () => {
                   </div>
                 </div>
 
+                <div className="sm:col-span-2  mt-16">
+                  <label
+                    htmlFor="IndianNumber"
+                    className="block text-md font-medium text-gray-700"
+                  >
+                    Emergency Contact Number in India{" "}
+                  </label>
+                  <div className="mt-3">
+                    <input
+                      onChange={e => {
+                        const numberIndia = e.target.value
+                        setNumberIndia(numberIndia)
+                      }}
+                      value={numberIndia}
+                      type="text"
+                      name="IndianNumber"
+                      id="IndianNumber"
+                      placeholder="Enter your Number"
+                      className="block input input-bordered input-warning w-full  rounded-md border-gray-300 py-3 px-4 shadow-sm shadow-gray-500 focus:border-indigo-500 focus:ring-indigo-500"
+                    />
+                  </div>
+                </div>
+
                 <div className="mt-5 col-span-2">
                   <div className="flex col-span-2 items-start">
-                    <div className="flex-shrink-0">
-                      {/* <Switch
-                      checked={agreed}
-                      onChange={setAgreed}
-                      className={classNames(
-                        agreed ? "bg-indigo-600" : "bg-gray-200",
-                        "relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
-                      )}
-                    >
-                      <span className="sr-only">Agree to policies</span>
-                      <span
-                        aria-hidden="true"
-                        className={classNames(
-                          agreed ? "translate-x-5" : "translate-x-0",
-                          "inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"
-                        )}
-                      />
-                    </Switch> */}
-                    </div>
+                    <div className="flex-shrink-0"></div>
                     <div className="flex col-span-2 gap-5 lg:gap-16">
                       <fieldset className="sm:col-span-2">
                         <legend className="block text-md font-medium text-gray-700">
@@ -365,9 +386,9 @@ const Index = () => {
                           <div className="flex items-center">
                             <input
                               required
-                              onChange={e => {
+                              onClick={e => {
                                 const age = e.target.value
-                                setUpload(age)
+                                setAge(age)
                               }}
                               id="budget-under-25k"
                               name="age"
@@ -385,9 +406,9 @@ const Index = () => {
                           <div className="flex items-center">
                             <input
                               required
-                              onChange={e => {
+                              onClick={e => {
                                 const age = e.target.value
-                                setUpload(age)
+                                setAge(age)
                               }}
                               id="budget-over-100k"
                               name="age"
@@ -411,9 +432,9 @@ const Index = () => {
                           <div className="flex items-center">
                             <input
                               required
-                              onChange={e => {
+                              onClick={e => {
                                 const status = e.target.value
-                                setUpload(status)
+                                setStatus(status)
                               }}
                               id="permanent"
                               name="status"
@@ -431,9 +452,9 @@ const Index = () => {
                           <div className="flex items-center">
                             <input
                               required
-                              onChange={e => {
+                              onClick={e => {
                                 const status = e.target.value
-                                setUpload(status)
+                                setStatus(status)
                               }}
                               id="temporary"
                               name="status"
@@ -450,9 +471,9 @@ const Index = () => {
                           <div className="flex items-center">
                             <input
                               required
-                              onChange={e => {
+                              onClick={e => {
                                 const status = e.target.value
-                                setUpload(status)
+                                setStatus(status)
                               }}
                               id="citizen"
                               name="status"
@@ -471,122 +492,7 @@ const Index = () => {
                     </div>
                   </div>
                 </div>
-                <div className="w-full mt-16 col-span-2">
-                  <h2 className="text-center text-2xl font-bold justify-self-center">
-                    Details of Minor Children
-                  </h2>
-                </div>
-                <div className="mt-5">
-                  <label
-                    htmlFor="children-name"
-                    className="block text-md font-medium text-gray-700"
-                  >
-                    Name
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      required
-                      onChange={e => {
-                        const childrenName = e.target.value
-                        setUpload(childrenName)
-                      }}
-                      value={upload.childrenName}
-                      type="text"
-                      name="childrenName"
-                      id="children-name"
-                      placeholder="Enter Name"
-                      className="block input input-bordered input-warning w-full max-w-xs rounded-md border-gray-300 py-3 px-4 shadow-sm shadow-gray-500 focus:border-indigo-500 focus:ring-indigo-500"
-                    />
-                  </div>
-                </div>
-                <div className="mt-5">
-                  <label
-                    htmlFor="hobbies"
-                    className="block text-md font-medium text-gray-700"
-                  >
-                    Interests/ Hobbies
-                  </label>
-                  <div className="mt-1">
-                    <input
-                      required
-                      onChange={e => {
-                        const hobbies = e.target.value
-                        setUpload(hobbies)
-                      }}
-                      value={upload.hobbies}
-                      type="text"
-                      name="hobbies"
-                      id="hobbies"
-                      placeholder="Enter Interests/ Hobbies"
-                      className="block input input-bordered input-warning w-full max-w-xs rounded-md border-gray-300 py-3 px-4 shadow-sm shadow-gray-500 focus:border-indigo-500 focus:ring-indigo-500"
-                    />
-                  </div>
-                </div>
-                <fieldset className="col-span-2 mt-5">
-                  <legend className="block text-md font-medium text-gray-700">
-                    Gender
-                  </legend>
-                  <div className="mt-4 flex gap-x-4 ">
-                    <div className="flex items-center">
-                      <input
-                        required
-                        onChange={e => {
-                          const gender = e.target.value
-                          setUpload(gender)
-                        }}
-                        id="male"
-                        name="gender"
-                        defaultValue="male"
-                        type="radio"
-                        className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                      />
-                      <label htmlFor="male" className="ml-3">
-                        <span className="block text-sm text-gray-700">
-                          Male
-                        </span>
-                      </label>
-                    </div>
 
-                    <div className="flex items-center">
-                      <input
-                        required
-                        onChange={e => {
-                          const gender = e.target.value
-                          setUpload(gender)
-                        }}
-                        id="female"
-                        name="gender"
-                        defaultValue="female"
-                        type="radio"
-                        className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                      />
-                      <label htmlFor="female" className="ml-3">
-                        <span className="block text-sm text-gray-700">
-                          Female
-                        </span>
-                      </label>
-                    </div>
-                    <div className="flex items-center">
-                      <input
-                        required
-                        onChange={e => {
-                          const gender = e.target.value
-                          setUpload(gender)
-                        }}
-                        id="others"
-                        name="gender"
-                        defaultValue="others"
-                        type="radio"
-                        className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
-                      />
-                      <label htmlFor="others" className="ml-3">
-                        <span className="block text-sm text-gray-700">
-                          Others
-                        </span>
-                      </label>
-                    </div>
-                  </div>
-                </fieldset>
                 <div className="col-span-2">
                   <h3 className="text-2xl font-bold text-center py-12">
                     MEMBERSHIP INFORMATION
@@ -660,16 +566,47 @@ const Index = () => {
                       </span>
                     </label>
                   </div>
-                  <input
-                    type="submit"
-                    disabled={loader}
-                    value="Continue"
-                    className={`inline-flex  text-2xl ${
-                      loader
-                        ? "opacity-50 cursor-not-allowed"
-                        : "cursor-pointer"
-                    } w-full items-center justify-center rounded-md border border-transparent bg-[#ed8f1d] px-6 py-3  font-medium text-white shadow-sm  focus:outline-none focus:ring-2 focus:ring-[#ed8f1d] focus:ring-offset-2`}
-                  />
+                  {checkoutError && (
+                    <p className="my-3 text-lg text-center text-red-500 font-semibold">
+                      {checkoutError}
+                    </p>
+                  )}
+                  <StripeCheckout
+                    stripeKey="pk_test_51Lcq7BLXHvCk9rLhXdU4ykecPymSFIEEVVgxLRJGZxQppaX7PGGsqnNUFzb3fKGJFPgusEnB0nLXuOA9UpjygXrZ00zoGfcUHe"
+                    token={handleToken}
+                    amount={amount} // the amount in cents
+                    name={`MAP - ${soloData.title}`}
+                    description={soloData.description.description}
+                    image="https://i.ibb.co/ysGmkZj/map-logo-removebg-preview-1.png"
+                    disabled={
+                      isProcessing ||
+                      !name ||
+                      !profession ||
+                      !blood ||
+                      !email ||
+                      !address ||
+                      !phoneHome ||
+                      !phoneMobile ||
+                      !status ||
+                      !age ||
+                      !agreed1 ||
+                      !agreed2 ||
+                      !agreed3
+                    }
+                  >
+                    <input
+                      type="submit"
+                      disabled={isProcessing}
+                      value={`${
+                        !isProcessing ? "Continue To Pay" : "Processing..."
+                      }`}
+                      className={`inline-flex  text-2xl ${
+                        isProcessing
+                          ? "opacity-50 cursor-not-allowed"
+                          : "cursor-pointer"
+                      } w-full items-center justify-center rounded-md border border-transparent bg-[#ed8f1d] px-6 py-3  font-medium text-white shadow-sm  focus:outline-none focus:ring-2 focus:ring-[#ed8f1d] focus:ring-offset-2`}
+                    />{" "}
+                  </StripeCheckout>
                 </div>
               </form>
             </div>
@@ -682,4 +619,23 @@ const Index = () => {
 }
 
 export default Index
-export const Head = () => <Seo title="Solo Package From" />
+export const Head = () => <Seo title="Family Package From" />
+
+export const query = graphql`
+  query Family {
+    allContentfulMemberPage {
+      edges {
+        node {
+          pricingCards {
+            title
+            price
+            slug
+            description {
+              description
+            }
+          }
+        }
+      }
+    }
+  }
+`

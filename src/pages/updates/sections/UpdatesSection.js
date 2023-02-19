@@ -70,6 +70,16 @@ const TextWrapper = styled.div`
     text-align: center;
     text-transform: capitalize;
   }
+  @media (max-width: 768px) {
+    h1 {
+      font-weight: 700;
+      font-size: 34px;
+      line-height: 60px;
+      /* identical to box height */
+
+      text-transform: uppercase;
+    }
+  }
 `
 const CardsWrapper = styled.div`
   display: grid;

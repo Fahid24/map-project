@@ -9,7 +9,6 @@ import Committee from "./home/sections/Committe"
 import BecomeMember from "./home/sections/BecomeMember "
 import { graphql } from "gatsby"
 import Loading from "../components/Loading/Loading"
-import CheckoutForm from "../components/CheckoutForm "
 
 const IndexPage = ({ data }) => {
   const homeData = data?.allContentfulHomePage.edges[0].node

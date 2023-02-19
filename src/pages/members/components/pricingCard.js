@@ -1,51 +1,10 @@
 import React from "react"
 import styled from "styled-components"
 import { BsCheckCircleFill } from "react-icons/bs"
-import { loadStripe } from "@stripe/stripe-js"
-// import StripeCheckout from "react-stripe-checkout"
+import { Link } from "gatsby"
 
-const PricingCard = ({ title, des, price, facilities, color, setLoader }) => {
-  const amount = price?.slice(1, 3)
-
+const PricingCard = ({ title, des, price, facilities, color, slug }) => {
   // console.log(amount)
-  const product = {
-    name: `Marathi Association Perth: ${title}`,
-    price: amount,
-    productOwner: "Marathi Association Perth",
-    description: des,
-    quantity: 1,
-  }
-
-  const handlePurchase = async () => {
-    setLoader(true)
-    const stripe = await loadStripe(
-      "pk_test_51Lcq7BLXHvCk9rLhXdU4ykecPymSFIEEVVgxLRJGZxQppaX7PGGsqnNUFzb3fKGJFPgusEnB0nLXuOA9UpjygXrZ00zoGfcUHe"
-    )
-    const body = { product }
-    const headers = {
-      "Content-Type": "application/json",
-    }
-
-    const response = await fetch(
-      "https://map-backend-mauve.vercel.app/api/create-checkout-session",
-      {
-        method: "POST",
-        headers: headers,
-        body: JSON.stringify(body),
-      }
-    )
-
-    const session = await response.json()
-
-    const result = stripe.redirectToCheckout({
-      sessionId: session.id,
-    })
-    if (result) {
-      setLoader(true)
-    }
-    if (!result.error) {
-    }
-  }
 
   return (
     <MainWrapper color={color}>
@@ -70,18 +29,9 @@ const PricingCard = ({ title, des, price, facilities, color, setLoader }) => {
             </li>
           ))}
         </ul>
-        {/* <StripeCheckout
-        amount={amount}
-        image="https://i.ibb.co/ysGmkZj/map-logo-removebg-preview-1.png"
-        token={handlePurchase}
-        stripeKey={
-          "pk_test_51Lcq7BLXHvCk9rLhXdU4ykecPymSFIEEVVgxLRJGZxQppaX7PGGsqnNUFzb3fKGJFPgusEnB0nLXuOA9UpjygXrZ00zoGfcUHe"
-        }
-      > */}
-        <Button className="" onClick={handlePurchase} color={color}>
-          become a member
-        </Button>
-        {/* </StripeCheckout> */}
+        <Link to={"/" + slug}>
+          <Button color={color}>become a member</Button>
+        </Link>
       </Wrapper2>
     </MainWrapper>
   )

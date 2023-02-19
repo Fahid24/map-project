@@ -121,6 +121,13 @@ const Wrapper1 = styled.div`
   }
   @media (max-width: 768px) {
     justify-items: center;
+    h1 {
+      font-weight: 600;
+      font-size: 37px;
+    }
+    p {
+      text-align: justify;
+    }
     button {
       padding: 10px 50px;
     }
