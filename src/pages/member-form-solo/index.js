@@ -619,7 +619,7 @@ const Index = data => {
 }
 
 export default Index
-export const Head = () => <Seo title="Family Package From" />
+export const Head = () => <Seo title="Solo Package From" />
 
 export const query = graphql`
   query Family {
