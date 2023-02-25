@@ -6,13 +6,15 @@ const UpdatesCard = ({ title, date, img }) => {
     <Wrapper img={img}>
       {/* <img src={img} /> */}
       <h2>{title}</h2>
-      <p>{date}</p> 
+      <p>{date}</p>
     </Wrapper>
   )
 }
 const Wrapper = styled.div`
-  background-image: url(${({ img }) => img});
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%),
+    url(${({ img }) => img});
   background-repeat: no-repeat;
+  background-size: 470px 280px;
   padding: 170px 30px 20px 30px;
   border-radius: 20px;
   h2 {

@@ -11,7 +11,7 @@ const index = ({ data }) => {
   const memberData = data?.allContentfulMemberPage.edges[0].node
   const banner = memberData.banner.url
   const title = memberData.title
-  const des = memberData.description
+  const des = memberData.description.description
   const cards = memberData.pricingCards
   const text = memberData.memberCtaText
 
@@ -37,7 +37,9 @@ export const query = graphql`
       edges {
         node {
           title
-          description
+          description {
+            description
+          }
           banner {
             url
           }

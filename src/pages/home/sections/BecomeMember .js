@@ -125,12 +125,19 @@ const Button = styled(Link)`
 `
 
 const Image = styled.img`
+  border-radius: 20px;
+  width: 521px;
+  height: 300px;
   animation: ${({ inView }) =>
     inView
       ? css`
           ${imageAnimation} 2s cubic-bezier(0.075, 0.82, 0.165, 1) forwards
         `
       : "none"};
+  @media (max-width: 768px) {
+    width: 350px;
+    height: 200px;
+  }
 `
 
 export default BecomeMember

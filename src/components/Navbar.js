@@ -29,7 +29,7 @@ const Navbar = () => {
             tabIndex={0}
             className=" py-5 dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
-            <li className="text-md pl-4 font-bold-md">
+            <li className=" text-md pl-4 font-bold-md">
               <Link to="/">Home</Link>
             </li>
             <li className="text-md pl-4 font-bold-md">
@@ -58,26 +58,26 @@ const Navbar = () => {
       </Wrapper>
 
       <div className="navbar-center gap-10 hidden lg:flex">
-        <ul className="menu gap-6 menu-horizontal px-1">
-          <li className="text-md font-bold-md">
+        <Items className=" gap-6 menu-horizontal px-1">
+          <Item className="text-md font-bold-md">
             <Link to="/">Home</Link>
-          </li>
-          <li className="text-md font-bold-md">
+          </Item>
+          <Item className="text-md font-bold-md">
             <Link to="/events">Events</Link>
-          </li>
-          <li className="text-md font-bold-md">
+          </Item>
+          <Item className="text-md font-bold-md">
             <Link to="/updates">Updates</Link>
-          </li>
-          <li className="text-md font-bold-md">
+          </Item>
+          <Item className="text-md font-bold-md">
             <Link to="/about">About Us</Link>
-          </li>
-          <li className="text-md font-bold-md">
+          </Item>
+          <Item className="text-md font-bold-md">
             <Link to="/contact">Contact Us</Link>
-          </li>
-        </ul>
+          </Item>
+        </Items>
         <Link
           to="/members"
-          className="btn btn-sm btn- text-white rounded-full text-md font-bold-md bg-[#ED8F1D]"
+          className="btn btn-sm  text-white rounded-full text-md font-bold-md bg-[#ED8F1D]"
         >
           Become a Member
         </Link>
@@ -98,7 +98,22 @@ const Wrapper = styled.div`
     }
   }
 `
+const Items = styled.ul`
+  display: flex;
+`
+const Item = styled.li`
+  transition: background-color 1s ease !important;
+  border-radius: 10px !important;
+  padding: 10px 10px;
 
+  &:active {
+    color: white !important;
+    background-color: #ed8f1d !important;
+    border-radius: 10px !important;
+    z-index: 99 !important;
+    transition: background-color 0s !important;
+  }
+`
 const Button = styled(Link)`
   display: none;
   @media (max-width: 768px) {

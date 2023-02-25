@@ -133,9 +133,9 @@ const Index = data => {
         setAgreed1(false)
         setAgreed2(false)
         setAgreed3(false)
-        toast.success("Successfully added information")
+        toast.success("Successfully paid and added information")
       } catch (e) {
-        toast.error("Error adding document:", e)
+        toast.error("Error for adding document")
       }
     } catch (error) {
       console.error(error)
@@ -372,7 +372,7 @@ const Index = data => {
                           setPhoneHome(phoneHome)
                         }}
                         value={phoneHome}
-                        type="text"
+                        type="number"
                         name="phoneHome"
                         id="phone"
                         placeholder="Enter your Home Phone Number"
@@ -388,7 +388,7 @@ const Index = data => {
                           setPhoneMobile(phoneMobile)
                         }}
                         value={phoneMobile}
-                        type="text"
+                        type="number"
                         name="phoneMobile"
                         id="phone"
                         placeholder="Enter your Mobile Phone Number"
@@ -538,7 +538,7 @@ const Index = data => {
                           setSpousePhoneHome(spousePhoneHome)
                         }}
                         value={spousePhoneHome}
-                        type="text"
+                        type="number"
                         name="phoneHome"
                         id="phone"
                         placeholder="Enter your Home Phone Number"
@@ -554,7 +554,7 @@ const Index = data => {
                           setSpousePhoneMobile(spousePhoneMobile)
                         }}
                         value={spousePhoneMobile}
-                        type="text"
+                        type="number"
                         name="phoneMobile"
                         id="phone"
                         placeholder="Enter your Mobile Phone Number"
@@ -577,7 +577,7 @@ const Index = data => {
                         setNumberIndia(numberIndia)
                       }}
                       value={numberIndia}
-                      type="text"
+                      type="number"
                       name="IndianNumber"
                       id="IndianNumber"
                       placeholder="Enter your Number"
@@ -1105,7 +1105,7 @@ const Index = data => {
                     </p>
                   )}
                   <StripeCheckout
-                    stripeKey="pk_test_51Lcq7BLXHvCk9rLhXdU4ykecPymSFIEEVVgxLRJGZxQppaX7PGGsqnNUFzb3fKGJFPgusEnB0nLXuOA9UpjygXrZ00zoGfcUHe"
+                    stripeKey="pk_test_51MauzREOdvuvWuY5eh0S0OlCxhMfDo1AEHxVvMTwD1g0CjMviCkXsPz6Fh4ywcEMJCFAJcrdCrm7991bW42v0PED000ZXhDVRt"
                     token={handleToken}
                     amount={amount} // the amount in cents
                     name={`MAP - ${familyData.title}`}

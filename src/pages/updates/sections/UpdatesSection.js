@@ -1,3 +1,4 @@
+import { Link } from "gatsby"
 import React from "react"
 import { useInView } from "react-intersection-observer"
 import styled, { keyframes } from "styled-components"
@@ -6,7 +7,7 @@ import UpdatesCard from "../components/UpdatesCard"
 const UpdatesSection = ({ title, des, updates }) => {
   // console.log(updates)
   const { ref, inView } = useInView()
-
+  // console.log(updates)
   return (
     <MainWrapper ref={ref}>
       <TextWrapper inView={inView}>
@@ -15,12 +16,14 @@ const UpdatesSection = ({ title, des, updates }) => {
       </TextWrapper>
       <CardsWrapper>
         {updates?.map(update => (
-          <UpdatesCard
-            key={update.id}
-            img={update.updateImage.url}
-            title={update.title}
-            date={update.date?.slice(0, 10)}
-          />
+          <Link to={`/${update.title}/${update.id}`}>
+            <UpdatesCard
+              key={update.id}
+              img={update.updateImage.url}
+              title={update.title}
+              date={update.date?.slice(0, 10)}
+            />
+          </Link>
         ))}
       </CardsWrapper>
     </MainWrapper>

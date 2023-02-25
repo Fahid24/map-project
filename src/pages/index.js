@@ -14,15 +14,19 @@ const IndexPage = ({ data }) => {
   const homeData = data?.allContentfulHomePage.edges[0].node
   const slider = homeData?.sliders
   const eventsTitle = homeData.eventTitle
-  const eventsDes = homeData.eventDescription
-  const events = homeData.homeEvents
+  const eventsDes = homeData.eventDescription.eventDescription
+  const events = data?.allContentfulEventsPage.edges[0].node.events
+    .slice(-3)
+    .reverse()
+
   const aboutTitle = homeData.homeAboutTitle
   const aboutDes = homeData.homeAboutDes.homeAboutDes
   const img1 = homeData.homeAboutBanner1.url
   const img2 = homeData.homeAboutBanner2.url
   const img3 = homeData.homeAboutBanner3.url
   const committeeTitle = homeData.homeCommitteeTitle
-  const committee = homeData.homeCommittes
+  const committee = data?.allContentfulAboutPage.edges[0].node.committeeMembers
+
   const committeeDes = homeData.homeCommitteeDes.homeCommitteeDes
   const ctaTitle = data.contentfulCta.title
   const ctaImage = data.contentfulCta.image.url
@@ -45,7 +49,7 @@ const IndexPage = ({ data }) => {
       <Committee
         title={committeeTitle}
         des={committeeDes}
-        committees={committee}
+        committees={committee.slice(-3).reverse()}
       />
       <BecomeMember title={ctaTitle} image={ctaImage} />
     </Layout>
@@ -71,16 +75,10 @@ export const query = graphql`
             }
           }
           eventTitle
-          eventDescription
-          homeEvents {
-            id
-            title
+          eventDescription {
             eventDescription
-            eventDate(locale: "")
-            eventImage {
-              url
-            }
           }
+
           homeAboutTitle
           homeAboutDes {
             homeAboutDes
@@ -95,16 +93,41 @@ export const query = graphql`
             url
           }
           homeCommitteeTitle
-          homeCommittes {
-            name
+
+          homeCommitteeDes {
+            homeCommitteeDes
+          }
+        }
+      }
+    }
+    allContentfulEventsPage {
+      edges {
+        node {
+          events {
             id
+            title
+            eventDate(locale: "")
+            eventImage {
+              url
+            }
+            eventDescription {
+              eventDescription
+            }
+          }
+        }
+      }
+    }
+
+    allContentfulAboutPage {
+      edges {
+        node {
+          committeeMembers {
+            id
+            name
             position
             committeeImage {
               url
             }
-          }
-          homeCommitteeDes {
-            homeCommitteeDes
           }
         }
       }

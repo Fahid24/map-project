@@ -35,6 +35,7 @@ const MainWrapper = styled.section`
   display: flex;
   justify-content: center;
   padding: 100px;
+  gap: 30px;
   @media (max-width: 768px) {
     display: grid;
     margin-top: 100px;

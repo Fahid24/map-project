@@ -1,22 +1,35 @@
-import { Link } from "gatsby"
+import { graphql, Link, useStaticQuery } from "gatsby"
 import React from "react"
 import styled from "styled-components"
-import logo from "../../static/logos/map-logo-removebg-preview 1.png"
+import logo from "../../../static/logos/map-logo-removebg-preview 1.png"
 
 const Footer = () => {
+  const data = useStaticQuery(graphql`
+    query {
+      allContentfulFooter {
+        edges {
+          node {
+            description
+            email
+            title
+            phone
+            location
+          }
+        }
+      }
+    }
+  `)
+
+  const allFooterData = data.allContentfulFooter.edges[0].node
   return (
     <MainWrapper>
       <Wrapper>
         <ContentWrapper1>
           <div>
             <img src={logo} alt="" />
-            <h1>Marathi association Perth</h1>
+            <h1>{allFooterData.title}</h1>
           </div>
-          <p className="text-center">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-            hendrerit elit quis metus fermentum vehicula. Ut malesuada suscipit
-            elit quis interdum.
-          </p>
+          <p className="text-center">{allFooterData.description}</p>
         </ContentWrapper1>
 
         <ContentWrapper2 className="mt-12">
@@ -40,17 +53,15 @@ const Footer = () => {
           <h3>Contact us</h3>
           <ul>
             <li>
-              <a href="mailto:info@marathiassosicationperth.com.au">
-                info@marathiassosicationperth.com.au
+              <a href={`mailto:${allFooterData.email}`}>
+                {allFooterData.email}
               </a>
             </li>
             <li>
-              <a href="tel:0457849263">0457849263</a>
+              <a href={`tel:${allFooterData.phone}`}>{allFooterData.phone}</a>
             </li>
             <li>
-              <Link to="https://www.google.com/maps/place/4+Tanga+Cl,+Southern+River+WA+6110,+Australia/@-32.0929672,115.9404304,17z/data=!3m1!4b1!4m6!3m5!1s0x2a329676e89b8605:0xc774920af1791333!8m2!3d-32.0929718!4d115.9426191!16s%2Fg%2F11c12wzvmx">
-                4 Tanga Close Southern river
-              </Link>
+              <p>{allFooterData.location}</p>
             </li>
           </ul>
         </ContentWrapper2>

@@ -1,3 +1,4 @@
+import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
 
@@ -11,13 +12,15 @@ const EventsSection = ({ title, des, banner, events }) => {
       <Banner background={banner} title={title} des={des} />
       <CardWrapper>
         {events?.map(event => (
-          <EventsCard
-            key={event.id}
-            img={event.eventImage.url}
-            title={event.title}
-            des={event.eventDescription}
-            date={event.eventDate.slice(0, 10)}
-          />
+          <Link to={`/${event.title}/${event.id}`}>
+            <EventsCard
+              key={event.id}
+              img={event.eventImage.url}
+              title={event.title}
+              des={event.eventDescription.eventDescription.slice(0, 70)}
+              date={event.eventDate.slice(0, 10)}
+            />
+          </Link>
         ))}
       </CardWrapper>
     </Wrapper>
@@ -36,6 +39,7 @@ const Wrapper = styled.section`
 const CardWrapper = styled.div`
   display: grid;
   grid-template-columns: auto auto auto;
+
   padding: 0 65px;
   gap: 40px;
   justify-items: center;

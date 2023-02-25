@@ -10,7 +10,7 @@ const EventsIndex = ({ data }) => {
   const eventData = data.allContentfulEventsPage.edges[0].node
   const title = eventData.pageTitle
   const des = eventData.childContentfulEventsPagePageDesTextNode.pageDes
-  const events = eventData.events
+  const events = eventData.events.slice().reverse()
   const banner = eventData.banner.url
   const ctaTitle = data.contentfulCta.title
   const ctaImg = data.contentfulCta.image.url
@@ -48,7 +48,10 @@ export const query = graphql`
             eventImage {
               url
             }
-            eventDescription
+            eventDescription {
+              eventDescription
+            }
+            createdAt
           }
         }
       }

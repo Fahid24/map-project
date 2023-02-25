@@ -1,8 +1,8 @@
 import React from "react"
 import styled from "styled-components"
 import { createGlobalStyle } from "styled-components"
-import Footer from "./Footer"
 import Navbar from "./Navbar"
+import Footer from "./Footer/index"
 
 function Layout({ children }) {
   return (

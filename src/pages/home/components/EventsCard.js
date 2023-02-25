@@ -4,10 +4,10 @@ import styled from "styled-components"
 const EventsCard = ({ img, title, des, date }) => {
   return (
     <Wrapper>
-      <img className="object-cover w-[100%] h-[auto]" src={img} alt="" />
+      <img className="" src={img} alt="" />
       <TextWrapper>
         <h2>{title}</h2>
-        <p>{des}</p>
+        <p>{des}. . .</p>
         <span>{date}</span>
       </TextWrapper>
     </Wrapper>
@@ -25,6 +25,9 @@ const Wrapper = styled.div`
   }
 
   img {
+    width: 378px;
+    height: 216px;
+    border-radius: 6px 6px 0px 0px;
   }
 `
 const TextWrapper = styled.div`

@@ -1,7 +1,6 @@
 import React from "react"
 import styled, { css, keyframes } from "styled-components"
 import EventsCard from "../components/EventsCard"
-
 import { Link } from "gatsby"
 import { useInView } from "react-intersection-observer"
 
@@ -17,13 +16,15 @@ const HomeEvents = props => {
       </TextWrapper>
       <CardWrapper inView={inView} ref={ref}>
         {events?.map(event => (
-          <EventsCard
-            key={event.id}
-            img={event.eventImage.url}
-            title={event.title}
-            des={event.eventDescription}
-            date={event.eventDate?.slice(0, 10)}
-          />
+          <Link to={`/${event.title}/${event.id}`}>
+            <EventsCard
+              key={event.id}
+              img={event.eventImage.url}
+              title={event.title}
+              des={event.eventDescription?.eventDescription?.slice(0, 50)}
+              date={event.eventDate?.slice(0, 10)}
+            />
+          </Link>
         ))}
       </CardWrapper>
       <Link to="/events">
@@ -92,7 +93,8 @@ const TextWrapper = styled.div`
   }
 `
 const CardWrapper = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: auto auto auto;
   padding: 0 65px;
   gap: 40px;
   justify-content: center;
@@ -104,7 +106,8 @@ const CardWrapper = styled.div`
       : "none"};
   @media (max-width: 768px) {
     margin-left: 0;
-    display: grid;
+    display: flex;
+    flex-direction: column;
     padding: 0 30px;
     justify-items: center;
   }

@@ -10,9 +10,7 @@ const AboutCommittee = ({ title, des, members }) => {
       </TextWrapper>
       <Wrapper>
         {members?.map(member => (
-          <ImgWrapper key={member.id}>
-            <img src={member.committeeImage.url} alt="" />
-
+          <ImgWrapper img={member.committeeImage.url} key={member.id}>
             <div className="committee1">
               <h2>{member.name}</h2>
               <p>{member.position}</p>
@@ -65,20 +63,31 @@ const TextWrapper = styled.div`
 `
 
 const ImgWrapper = styled.div`
-  position: relative;
-
+  display: grid;
+  justify-items: center;
+  align-content: flex-end;
+  border-radius: 20px;
+  width: 351px;
+  height: 445px;
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%),
+    url(${({ img }) => img});
+  background-repeat: no-repeat;
+  background-size: 351px;
   img {
-    border-radius: 20px;
+    max-width: 351px;
+
+    background-image: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      #000000 100%
+    );
   }
 
   div {
-    position: absolute;
-    top: 320px;
-    left: 50px;
-
+    padding-bottom: 30px;
     h2 {
-      font-weight: 700;
-      font-size: 32px;
+      font-weight: 600;
+      font-size: 30px;
       line-height: 48px;
       color: white;
     }
@@ -87,6 +96,8 @@ const ImgWrapper = styled.div`
       line-height: 36px;
       /* identical to box height */
       color: #ed8f1d;
+    }
+    @media (max-width: 768px) {
     }
   }
   transition: 0.5s;

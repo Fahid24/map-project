@@ -10,17 +10,23 @@ const Committee = ({ committees, title, des }) => {
         <p>{des}</p>
       </TextWrapper>
       <Wrapper>
-        {committees?.map(committee => (
+        {/* {committees?.map(committee => (
           <ImgWrapper key={committee.id}>
-            <img
-              className="object-cover w-[100%] h-[auto]"
-              src={committee.committeeImage.url}
-              alt=""
-            />
+            <img className="" src={committee.committeeImage.url} alt="" />
 
             <div className="committee1">
               <h2>{committee.name}</h2>
               <p>{committee.position}</p>
+            </div>
+          </ImgWrapper>
+        ))} */}
+        {committees?.map(member => (
+          <ImgWrapper img={member.committeeImage.url} key={member.id}>
+            {/* <img src={member.committeeImage.url} alt="" /> */}
+
+            <div className="committee1">
+              <h2>{member.name}</h2>
+              <p>{member.position}</p>
             </div>
           </ImgWrapper>
         ))}
@@ -51,6 +57,7 @@ const TextWrapper = styled.div`
   display: grid;
   justify-items: center;
   gap: 30px;
+
   h1 {
     font-weight: 700;
     font-size: 40px;
@@ -67,17 +74,28 @@ const TextWrapper = styled.div`
 `
 
 const ImgWrapper = styled.div`
-  position: relative;
-
+  display: grid;
+  justify-items: center;
+  align-content: flex-end;
+  border-radius: 20px;
+  width: 351px;
+  height: 445px;
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%),
+    url(${({ img }) => img});
+  background-repeat: no-repeat;
+  background-size: 351px;
   img {
-    border-radius: 20px;
+    max-width: 351px;
+
+    background-image: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      #000000 100%
+    );
   }
 
   div {
-    position: absolute;
-    top: 320px;
-    left: 50px;
-
+    padding-bottom: 30px;
     h2 {
       font-weight: 600;
       font-size: 30px;

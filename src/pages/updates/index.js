@@ -20,7 +20,11 @@ const index = ({ data }) => {
 
   return (
     <Layout>
-      <UpdatesSection title={title} des={des} updates={updates} />
+      <UpdatesSection
+        title={title}
+        des={des}
+        updates={updates.slice().reverse()}
+      />
       <BecomeMember title={ctaTitle} image={ctaImage} />
     </Layout>
   )
