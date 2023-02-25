@@ -3,7 +3,7 @@ import "react-toastify/dist/ReactToastify.css"
 import { EnvelopeIcon, PhoneIcon } from "@heroicons/react/24/outline"
 import styled from "styled-components"
 
-const PersonalForm = () => {
+const PersonalForm = ({ contactData }) => {
   return (
     <div className="my-40 relative bg-white">
       <div className="absolute inset-0">
@@ -23,8 +23,7 @@ const PersonalForm = () => {
               <div>
                 <dt className="sr-only">Postal address</dt>
                 <dd>
-                  <p>742 Evergreen Terrace</p>
-                  <p>Springfield, OR 12345</p>
+                  <p>742 Evergreen Terrace Springfield, OR 12345</p>
                 </dd>
               </div>
               <div className="mt-6">
@@ -52,7 +51,12 @@ const PersonalForm = () => {
         </Wrapper>
         <div className="bg-white py-16 px-6 lg:col-span-3 lg:py-24 lg:px-8 xl:pl-12">
           <div className="mx-auto max-w-lg lg:max-w-none">
-            <form className="grid grid-cols-1 gap-y-6">
+            <form
+              name="contact"
+              method="POST"
+              data-netlify="true"
+              className="grid grid-cols-1 gap-y-6"
+            >
               <div>
                 <label htmlFor="full-name" className="sr-only">
                   Full name
