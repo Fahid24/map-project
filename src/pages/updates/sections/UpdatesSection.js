@@ -47,7 +47,7 @@ const MainWrapper = styled.section`
   display: grid;
   gap: 70px;
   @media (max-width: 768px) {
-    margin-top: 150px;
+    margin-top: 80px;
     padding: 50px 20px;
     gap: 50px;
   }

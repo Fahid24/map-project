@@ -10,16 +10,6 @@ const Committee = ({ committees, title, des }) => {
         <p>{des}</p>
       </TextWrapper>
       <Wrapper>
-        {/* {committees?.map(committee => (
-          <ImgWrapper key={committee.id}>
-            <img className="" src={committee.committeeImage.url} alt="" />
-
-            <div className="committee1">
-              <h2>{committee.name}</h2>
-              <p>{committee.position}</p>
-            </div>
-          </ImgWrapper>
-        ))} */}
         {committees?.map(member => (
           <ImgWrapper img={member.committeeImage.url} key={member.id}>
             {/* <img src={member.committeeImage.url} alt="" /> */}
@@ -65,6 +55,7 @@ const TextWrapper = styled.div`
     text-align: center;
   }
   p {
+    padding: 20px;
     font-weight: 400;
     font-size: 20px;
     line-height: 30px;

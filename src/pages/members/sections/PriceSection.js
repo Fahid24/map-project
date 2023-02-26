@@ -1,13 +1,9 @@
-import React, { useState } from "react"
+import React from "react"
 import styled from "styled-components"
-import Loading from "../../../components/Loading/Loading"
 import PricingCard from "../components/pricingCard"
 
 const PriceSection = ({ cards }) => {
-  const [loader, setLoader] = useState(false)
-  if (loader) {
-    return <Loading />
-  }
+  console.log(cards)
   return (
     <MainWrapper id="card">
       {cards?.map(card => (
@@ -16,7 +12,9 @@ const PriceSection = ({ cards }) => {
           id={card.id}
           slug={card.slug}
           title={card.title}
-          des={card.description}
+          des={
+            card.childrenContentfulPricingCardDescriptionTextNode[0].description
+          }
           color={card.color}
           price={card.price}
           facilities={[
@@ -24,7 +22,6 @@ const PriceSection = ({ cards }) => {
             `${card.facility2}`,
             `${card.facility3}`,
           ]}
-          setLoader={setLoader}
         />
       ))}
     </MainWrapper>

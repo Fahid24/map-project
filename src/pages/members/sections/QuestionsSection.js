@@ -25,7 +25,6 @@ const Wrapper = styled.div`
     font-weight: 700;
     font-size: 40px;
     line-height: 60px;
-    text-transform: capitalize;
     color: #ffffff;
   }
 
@@ -36,14 +35,16 @@ const Wrapper = styled.div`
     padding: 100px 20px;
     text-align: center;
     h1 {
-      font-size: 28px;
+      font-size: 30px;
+      font-weight: 600;
+      line-height: 1.5;
     }
   }
 `
 const Button = styled(Link)`
   padding: 12px 60px;
   font-weight: 500;
-  font-size: 24px;
+  font-size: 26px;
   line-height: 36px;
   text-transform: capitalize;
   background: white;

@@ -48,6 +48,7 @@ const TextWrapper = styled.div`
     text-align: center;
   }
   p {
+    padding: 20px;
     font-weight: 400;
     font-size: 20px;
     line-height: 30px;

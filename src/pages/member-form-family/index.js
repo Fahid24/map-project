@@ -242,7 +242,7 @@ const Index = data => {
                     htmlFor="name"
                     className="block text-md font-medium text-gray-700"
                   >
-                    Your name
+                    Your Name
                   </label>
                   <div className="mt-3">
                     <input
@@ -408,7 +408,7 @@ const Index = data => {
                     htmlFor="name"
                     className="block text-md font-medium text-gray-700"
                   >
-                    Your name
+                    Name
                   </label>
                   <div className="mt-3">
                     <input
@@ -432,7 +432,7 @@ const Index = data => {
                     htmlFor="profession"
                     className="block text-md font-medium text-gray-700"
                   >
-                    Your Profession
+                    Profession
                   </label>
                   <div className="mt-3">
                     <input
@@ -456,7 +456,7 @@ const Index = data => {
                     htmlFor="email"
                     className="block text-md font-medium text-gray-700"
                   >
-                    Your Email
+                    Email
                   </label>
                   <div className="mt-3">
                     <input
@@ -479,7 +479,7 @@ const Index = data => {
                     htmlFor="blood-group"
                     className="block text-md font-medium text-gray-700"
                   >
-                    Your Blood Group
+                    Blood Group
                   </label>
                   <div className="mt-3">
                     <input
@@ -503,7 +503,7 @@ const Index = data => {
                     htmlFor="address"
                     className="block text-md font-medium text-gray-700"
                   >
-                    Your Address
+                    Address
                   </label>
                   <div className="mt-3">
                     <input
@@ -526,7 +526,7 @@ const Index = data => {
                     htmlFor="Phone"
                     className="block text-md font-medium text-gray-700"
                   >
-                    Your Phone Number
+                    Phone Number
                   </label>
                   <div className="grid gap-4" id="Phone">
                     <div className="items-center gap-3 lg:gap-0 flex lg:grid">
@@ -1105,7 +1105,7 @@ const Index = data => {
                     </p>
                   )}
                   <StripeCheckout
-                    stripeKey="pk_test_51MauzREOdvuvWuY5eh0S0OlCxhMfDo1AEHxVvMTwD1g0CjMviCkXsPz6Fh4ywcEMJCFAJcrdCrm7991bW42v0PED000ZXhDVRt"
+                    stripeKey="pk_live_51MauzREOdvuvWuY5pXokgl0vWZk4jOP9v3jGq3BrmtLVnDSoJ8UIkCjQVgapiKvhj32S0GeSH6Ad9D0o7l4PMft100tFgktdYM"
                     token={handleToken}
                     amount={amount} // the amount in cents
                     name={`MAP - ${familyData.title}`}

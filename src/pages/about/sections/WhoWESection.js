@@ -99,7 +99,6 @@ const Wrapper1 = styled.div`
     font-weight: 500;
     font-size: 24px;
     line-height: 36px;
-    text-transform: capitalize;
   }
 
   button {
@@ -126,7 +125,8 @@ const Wrapper1 = styled.div`
       font-size: 37px;
     }
     p {
-      text-align: justify;
+      font-size: 18px;
+      text-align: left;
     }
     button {
       padding: 10px 50px;
@@ -146,6 +146,9 @@ const ImgWrapper = styled.div`
   gap: 50px;
 `
 const Image = styled.img`
+  width: 175px;
+  height: 260px;
+  border-radius: 20px;
   animation: ${({ inView }) =>
     inView
       ? css`

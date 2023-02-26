@@ -7,7 +7,7 @@ const Banner = ({ background, title, des }) => {
   const { ref, inView } = useInView()
 
   return (
-    <Wrapper className="bg-cover" ref={ref} background={background}>
+    <Wrapper className="bg-cover h-[90vh]" ref={ref} background={background}>
       <TextWrapper inView={inView}>
         <h1>{title}</h1>
         <p>{des}</p>
@@ -64,19 +64,15 @@ const TextWrapper = styled.div`
   }
 
   p {
-    font-size: 30px;
-    text-transform: capitalize;
+    font-size: 22px;
+    font-weight: 300;
     line-height: 1.5;
     color: white;
   }
   @media (max-width: 768px) {
-    padding: 350px 20px 50px 10px;
+    padding: 300px 20px 50px 10px;
     h1 {
       font-size: 37px;
-    }
-    p {
-      font-size: 27px;
-      max-width: 400px;
     }
   }
 `

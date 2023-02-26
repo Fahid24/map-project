@@ -9,7 +9,9 @@ const Footer = () => {
       allContentfulFooter {
         edges {
           node {
-            description
+            description {
+              description
+            }
             email
             title
             phone
@@ -29,14 +31,14 @@ const Footer = () => {
             <img src={logo} alt="" />
             <h1>{allFooterData.title}</h1>
           </div>
-          <p className="text-center">{allFooterData.description}</p>
+          <p className="text-center">{allFooterData.description.description}</p>
         </ContentWrapper1>
 
         <ContentWrapper2 className="mt-12">
           <h3>Important Links</h3>
           <ul>
             <Link to="/events">
-              <li>Upcoming events</li>
+              <li>Upcoming Events</li>
             </Link>
             <Link to="/updates">
               <li>Latest News</li>
@@ -112,8 +114,8 @@ const ContentWrapper1 = styled.div`
     font-weight: 400;
     font-size: 18px;
     line-height: 27px;
-    text-transform: capitalize;
     color: #d3d3d3;
+    text-align: left;
   }
   @media (max-width: 768px) {
     h1 {

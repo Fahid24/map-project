@@ -12,7 +12,7 @@ const DynamicPageTemplate = ({ pageContext }) => {
     <Layout>
       <MainWrapper>
         <h4>
-          <Link style={{ display: "flex", alignItems: "center" }} to="/updates">
+          <Link style={{ display: "flex", alignItems: "center" }} to="/events">
             <MdArrowBackIosNew />
             All {title}
           </Link>

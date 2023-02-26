@@ -83,10 +83,10 @@ const Wrapper1 = styled.div`
   }
 
   p {
+    max-width: 300px;
     font-weight: 400;
     font-size: 20px;
     line-height: 30px;
-    text-transform: capitalize;
   }
   @media (max-width: 768px) {
     padding: 30px 30px 0 30px;
@@ -108,8 +108,6 @@ const Wrapper2 = styled.div`
         font-size: 20px;
         line-height: 30px;
         /* identical to box height */
-
-        text-transform: capitalize;
       }
     }
   }

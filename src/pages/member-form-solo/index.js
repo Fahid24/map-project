@@ -185,7 +185,7 @@ const Index = data => {
             </svg>
             <div className="text-center">
               <h2 className="text-2xl lg:text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-                PERSONAL DETAILS
+                Applicant Details
               </h2>
             </div>
             <div className="mt-12">
@@ -195,7 +195,7 @@ const Index = data => {
                     htmlFor="name"
                     className="block text-md font-medium text-gray-700"
                   >
-                    Your name
+                    Your Name
                   </label>
                   <div className="mt-1">
                     <input
@@ -572,7 +572,7 @@ const Index = data => {
                     </p>
                   )}
                   <StripeCheckout
-                    stripeKey="pk_test_51MauzREOdvuvWuY5eh0S0OlCxhMfDo1AEHxVvMTwD1g0CjMviCkXsPz6Fh4ywcEMJCFAJcrdCrm7991bW42v0PED000ZXhDVRt"
+                    stripeKey="pk_live_51MauzREOdvuvWuY5pXokgl0vWZk4jOP9v3jGq3BrmtLVnDSoJ8UIkCjQVgapiKvhj32S0GeSH6Ad9D0o7l4PMft100tFgktdYM"
                     token={handleToken}
                     amount={amount} // the amount in cents
                     name={`MAP - ${soloData.title}`}
