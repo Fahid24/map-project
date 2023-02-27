@@ -94,6 +94,7 @@ const Wrapper = styled.div`
 `
 const ContentWrapper1 = styled.div`
   display: grid;
+  justify-items: center;
   gap: 30px;
   div {
     display: flex;
