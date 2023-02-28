@@ -76,15 +76,15 @@ const TextWrapper = styled.div`
       font-size: 35px;
     }
   }
-  @media (max-height: 750px) {
-    padding: 180px 20px 50px 10px;
+  @media (max-height: 750px) and (max-width: 768px) {
+    padding: 180px 10px 50px 20px;
     h1 {
       font-weight: 600;
       font-size: 35px;
     }
   }
-  @media (max-height: 500px) {
-    padding: 0px 20px 50px 10px;
+  @media (max-height: 500px) and (max-width: 768px) {
+    padding: 0px 10px 50px 20px;
     h1 {
       font-weight: 600;
       font-size: 28px;
