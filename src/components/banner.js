@@ -70,7 +70,7 @@ const TextWrapper = styled.div`
     color: white;
   }
   @media (max-width: 768px) {
-    padding: 340px 20px 50px 10px;
+    padding: 300px 20px 50px 10px;
     h1 {
       font-weight: 600;
       font-size: 35px;
