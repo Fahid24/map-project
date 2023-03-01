@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react"
 import "swiper/css"
 import "swiper/css/pagination"
 import { Pagination, EffectCoverflow, Autoplay } from "swiper"
+import { MainImage } from "gatsby-plugin-image"
 
 const Slider = ({ slider }) => {
   return (
@@ -16,8 +17,8 @@ const Slider = ({ slider }) => {
       >
         {slider?.map(u => (
           <SwiperSlide key={u.id}>
-            <img
-              className=" w-[100%] h-[90vh]  mt-[87px]"
+            <MainImage
+              className="object-cover w-[100%] h-[90vh]  mt-[87px]"
               src={u.sliderImage.url}
               alt="slider"
             />

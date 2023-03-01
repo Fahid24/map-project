@@ -112,6 +112,11 @@ const ImgWrapper = styled.div`
       transform: scale(1);
     }
   }
+  @media (max-width: 768px) {
+    width: 300px;
+    height: 420px;
+    background-position: center top;
+  }
 `
 const Explore = styled.p`
   cursor: pointer;

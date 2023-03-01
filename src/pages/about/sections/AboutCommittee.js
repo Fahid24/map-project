@@ -98,8 +98,6 @@ const ImgWrapper = styled.div`
       /* identical to box height */
       color: #ed8f1d;
     }
-    @media (max-width: 768px) {
-    }
   }
   transition: 0.5s;
   &:hover {
@@ -110,6 +108,12 @@ const ImgWrapper = styled.div`
     &:hover {
       transform: scale(1);
     }
+  }
+
+  @media (max-width: 768px) {
+    width: 300px;
+    height: 420px;
+    background-position: center top;
   }
 `
 
