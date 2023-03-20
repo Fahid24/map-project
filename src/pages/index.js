@@ -9,6 +9,8 @@ import Committee from "./home/sections/Committe"
 import BecomeMember from "./home/sections/BecomeMember "
 import { graphql } from "gatsby"
 import Loading from "../components/Loading/Loading"
+import Gallery from "./home/sections/gallary"
+import Featured from "./home/sections/Featured-section"
 
 const IndexPage = ({ data }) => {
   const homeData = data?.allContentfulHomePage.edges[0].node
@@ -46,6 +48,8 @@ const IndexPage = ({ data }) => {
         img2={img2}
         img3={img3}
       />
+      <Gallery />
+      <Featured />
       <Committee
         title={committeeTitle}
         des={committeeDes}
