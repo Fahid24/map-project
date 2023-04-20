@@ -7,7 +7,6 @@ import { useInView } from "react-intersection-observer"
 const HomeEvents = props => {
   const { title, des, events } = props
   const { ref, inView } = useInView()
-
   return (
     <Wrapper>
       <TextWrapper>

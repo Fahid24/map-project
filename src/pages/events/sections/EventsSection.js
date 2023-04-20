@@ -6,7 +6,7 @@ import Banner from "../../../components/banner"
 import EventsCard from "../../home/components/EventsCard"
 
 const EventsSection = ({ title, des, banner, events }) => {
-  // console.log(events)
+  console.log(events)
   return (
     <Wrapper>
       <Banner background={banner} title={title} des={des} />

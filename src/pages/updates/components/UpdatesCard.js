@@ -5,7 +5,7 @@ const UpdatesCard = ({ title, date, img }) => {
   return (
     <Wrapper img={img}>
       {/* <img src={img} /> */}
-      <h2>{title.slice(0, 50)}. . .</h2>
+      <h2>{title?.slice(0, 50)}. . .</h2>
       <p>{date}</p>
     </Wrapper>
   )

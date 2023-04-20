@@ -71,8 +71,7 @@ exports.createPages = async ({ graphql, actions }) => {
   `)
 
   const sections2 = result2.data.allContentfulUpdatesPage.edges[0].node.updates
-  // Create a page for each item in the data
-  // console.log(sections)
+
   sections2.forEach(section => {
     createPage({
       path: `${section.title}/${section.id}`,

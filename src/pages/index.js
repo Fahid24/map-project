@@ -48,8 +48,16 @@ const IndexPage = ({ data }) => {
         img2={img2}
         img3={img3}
       />
-      <Gallery />
-      <Featured />
+      <Gallery
+        title={homeData?.galleryTitle}
+        des={homeData?.galleryDescription.galleryDescription}
+        galleries={homeData?.galleryCards}
+      />
+      <Featured
+        title={homeData?.featuredTitle}
+        des={homeData?.featuredDescription.featuredDescription}
+        video={homeData?.featuredVideo.file.url}
+      />
       <Committee
         title={committeeTitle}
         des={committeeDes}
@@ -68,7 +76,7 @@ export const Head = () => <Seo title="Home" />
 
 export default IndexPage
 export const query = graphql`
-  query SliderQuery {
+  query HomeQuery {
     allContentfulHomePage {
       edges {
         node {
@@ -95,6 +103,32 @@ export const query = graphql`
           }
           homeAboutBanner3 {
             url
+          }
+
+          galleryTitle
+          galleryCards {
+            title
+            id
+            images {
+              galleryImages {
+                id
+                file {
+                  url
+                }
+              }
+            }
+          }
+          featuredTitle
+          galleryDescription {
+            galleryDescription
+          }
+          featuredDescription {
+            featuredDescription
+          }
+          featuredVideo {
+            file {
+              url
+            }
           }
           homeCommitteeTitle
 

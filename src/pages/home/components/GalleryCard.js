@@ -7,21 +7,22 @@ import "swiper/css/pagination"
 import { Pagination, EffectCoverflow, Autoplay } from "swiper"
 import { MainImage } from "gatsby-plugin-image"
 
-const GalleryCard = () => {
+const GalleryCard = ({ title, images, id }) => {
+  // console.log(images)
   return (
-    <Wrapper htmlFor="my-modal-5">
-      <Image src="https://i.ibb.co/jyjDnCX/Rectangle-34.png" alt="" />
+    <Wrapper htmlFor={id}>
+      <Image src={images?.slice(-1)[0]?.file?.url} alt="" />
       <TextWrapper>
-        <h1>Diwali 2022</h1>
-        <p>49 Photos</p>
+        <h1>{title}</h1>
+        <p>{images?.length} Photos</p>
       </TextWrapper>
 
       {/* Put this part before </body> tag */}
-      <input type="checkbox" id="my-modal-5" className="modal-toggle" />
+      <input type="checkbox" id={id} className="modal-toggle" />
       <div className="modal">
-        <div className="modal-box w-11/12  p-10 max-w-5xl">
+        <div className="modal-box w-11/12 py-12 px-4 lg:p-10 max-w-5xl">
           <label
-            htmlFor="my-modal-5"
+            htmlFor={id}
             className="btn btn-sm  btn-circle bg-orange-400 absolute right-2 top-2"
           >
             ✕
@@ -32,20 +33,15 @@ const GalleryCard = () => {
             modules={[EffectCoverflow, Pagination, Autoplay]}
             className="mySwiper"
           >
-            <SwiperSlide>
-              <MainImage
-                className=" w-[100%] h-[70vh] object-cover rounded-md "
-                src="https://i.ibb.co/RPmsyzT/close-up-image-programer-working-his-desk-office.jpg"
-                alt="slider"
-              />
-            </SwiperSlide>
-            <SwiperSlide>
-              <MainImage
-                className="w-[100%] h-[70vh] object-cover rounded-md"
-                src="https://i.ibb.co/jyjDnCX/Rectangle-34.png"
-                alt="slider"
-              />
-            </SwiperSlide>
+            {images?.map(u => (
+              <SwiperSlide key={u.id}>
+                <MainImage
+                  className="object-cover lg:w-[100%] h-[500px] lg:h-[70vh] rounded-md"
+                  src={u.file.url}
+                  alt="slider"
+                />
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
       </div>
@@ -62,6 +58,7 @@ const Wrapper = styled.label`
 `
 const Image = styled.img`
   width: 300px;
+  height: 230px;
   border-radius: 20px 20px 0 0;
   object-fit: cover;
 `

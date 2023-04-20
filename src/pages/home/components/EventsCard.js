@@ -6,7 +6,7 @@ const EventsCard = ({ img, title, des, date }) => {
     <Wrapper>
       <img className="" src={img} alt="" />
       <TextWrapper>
-        <h2>{title.slice(0, 50)}</h2>
+        <h2>{title?.slice(0, 50)}</h2>
         <p>{des}. . .</p>
         <span>{date}</span>
       </TextWrapper>

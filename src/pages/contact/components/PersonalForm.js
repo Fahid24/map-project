@@ -86,6 +86,7 @@ const PersonalForm = () => {
                   name="full-name"
                   id="full-name"
                   autoComplete="name"
+                  required
                   className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                   placeholder="Full name"
                 />
@@ -98,6 +99,7 @@ const PersonalForm = () => {
                   id="email"
                   name="email"
                   type="email"
+                  required
                   autoComplete="email"
                   className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                   placeholder="Email"
@@ -111,6 +113,7 @@ const PersonalForm = () => {
                   type="text"
                   name="phone"
                   id="phone"
+                  required
                   autoComplete="tel"
                   className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                   placeholder="Phone"
@@ -123,6 +126,7 @@ const PersonalForm = () => {
                 <textarea
                   id="message"
                   name="message"
+                  required
                   rows={4}
                   className="block w-full rounded-md border-gray-300 py-3 px-4 placeholder-gray-500 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                   placeholder="Message"

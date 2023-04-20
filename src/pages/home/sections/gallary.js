@@ -2,22 +2,21 @@ import React from "react"
 import styled from "styled-components"
 import GalleryCard from "../components/GalleryCard"
 
-const Gallery = () => {
+const Gallery = ({ galleries, title, des }) => {
+  console.log(galleries)
   return (
     <Wrapper>
-      <Title>Gallery</Title>
-      <Description>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
-        hendrerit elit quis metus fermentum vehicula. Ut malesuada suscipit elit
-        quis interdum.
-      </Description>
+      <Title>{title}</Title>
+      <Description>{des}</Description>
       <CardsWrapper>
-        <GalleryCard />
-        <GalleryCard />
-        <GalleryCard />
-        <GalleryCard />
-        <GalleryCard />
-        <GalleryCard />
+        {galleries?.map(gallery => (
+          <GalleryCard
+            key={gallery?.id}
+            id={gallery?.id}
+            title={gallery?.title}
+            images={gallery?.images.galleryImages}
+          />
+        ))}
       </CardsWrapper>
     </Wrapper>
   )
@@ -34,6 +33,9 @@ const Title = styled.div`
   line-height: 60px;
   text-transform: uppercase;
   text-align: center;
+  @media (max-width: 768px) {
+    font-size: 32px;
+  }
 `
 const Description = styled.div`
   margin-top: 35px;
@@ -50,5 +52,9 @@ const CardsWrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 60px;
+  @media (max-width: 768px) {
+    grid-template-columns: auto;
+    gap: 20px;
+  }
 `
 export default Gallery
