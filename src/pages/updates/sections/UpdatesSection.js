@@ -64,7 +64,7 @@ const TextWrapper = styled.div`
     line-height: 60px;
     /* identical to box height */
 
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
   }
   p {
     font-weight: 400;
