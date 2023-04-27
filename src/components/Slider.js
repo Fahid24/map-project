@@ -10,7 +10,7 @@ const Slider = ({ slider }) => {
   return (
     <>
       <Swiper
-        pagination={true}
+        pagination={{ clickable: true }}
         autoplay={{ delay: 3000 }}
         modules={[EffectCoverflow, Pagination, Autoplay]}
         className="mySwiper"

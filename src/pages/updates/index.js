@@ -45,7 +45,9 @@ export const query = graphql`
           updates {
             id
             date
-            title
+            title {
+              title
+            }
             updateImage {
               url
             }

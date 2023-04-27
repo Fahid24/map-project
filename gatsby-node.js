@@ -56,7 +56,9 @@ exports.createPages = async ({ graphql, actions }) => {
             updates {
               id
               date
-              title
+              title {
+                title
+              }
               updateImage {
                 url
               }
@@ -74,13 +76,13 @@ exports.createPages = async ({ graphql, actions }) => {
 
   sections2.forEach(section => {
     createPage({
-      path: `${section.title}/${section.id}`,
+      path: `${section.title.title.slice(0, 10)}/${section.id}`,
       component: updateSectionTemplate,
 
       context: {
         slug: section.id,
         title: result2.data.allContentfulUpdatesPage.edges[0].node.pageTitle,
-        subTitle: section.title,
+        subTitle: section.title.title,
         date: section.date,
         des: section.description.description,
       },

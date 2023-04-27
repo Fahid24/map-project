@@ -56,7 +56,7 @@ const IndexPage = ({ data }) => {
       <Featured
         title={homeData?.featuredTitle}
         des={homeData?.featuredDescription.featuredDescription}
-        video={homeData?.featuredVideo.file.url}
+        video={homeData?.featuredVideo}
       />
       <Committee
         title={committeeTitle}
@@ -125,11 +125,7 @@ export const query = graphql`
           featuredDescription {
             featuredDescription
           }
-          featuredVideo {
-            file {
-              url
-            }
-          }
+          featuredVideo
           homeCommitteeTitle
 
           homeCommitteeDes {

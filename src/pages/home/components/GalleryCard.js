@@ -20,10 +20,10 @@ const GalleryCard = ({ title, images, id }) => {
       {/* Put this part before </body> tag */}
       <input type="checkbox" id={id} className="modal-toggle" />
       <div className="modal">
-        <div className="modal-box w-11/12 py-12 px-4 lg:p-10 max-w-5xl">
+        <div className="modal-box w-11/12 p-[0] relative mt-16  max-w-5xl">
           <label
             htmlFor={id}
-            className="btn btn-sm  btn-circle bg-orange-400 absolute right-2 top-2"
+            className="btn btn-sm hover:text-white  btn-circle bg-white text-black font-bold text-md absolute z-10 right-2 top-2"
           >
             ✕
           </label>
@@ -36,9 +36,9 @@ const GalleryCard = ({ title, images, id }) => {
             {images?.map(u => (
               <SwiperSlide key={u.id}>
                 <MainImage
-                  className="object-cover lg:w-[100%] h-[500px] lg:h-[70vh] rounded-md"
+                  className="object-cover lg:w-[100%] h-[500px] lg:h-[80vh] rounded-md"
                   src={u.file.url}
-                  alt="slider"
+                  // alt="slider"
                 />
               </SwiperSlide>
             ))}
@@ -61,6 +61,13 @@ const Image = styled.img`
   height: 230px;
   border-radius: 20px 20px 0 0;
   object-fit: cover;
+`
+const SlideImage = styled.div`
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, #000000 100%),
+    url(${({ src }) => src});
+  background-repeat: no-repeat;
+  /* background-position: center; */
+  /* background-size: cover; */
 `
 const TextWrapper = styled.div`
   h1 {

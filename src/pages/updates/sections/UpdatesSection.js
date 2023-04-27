@@ -16,11 +16,11 @@ const UpdatesSection = ({ title, des, updates }) => {
       </TextWrapper>
       <CardsWrapper>
         {updates?.map(update => (
-          <Link to={`/${update.title}/${update.id}`}>
+          <Link to={`/${update.title.title.slice(0, 10)}/${update.id}`}>
             <UpdatesCard
               key={update.id}
               img={update.updateImage.url}
-              title={update.title}
+              title={update.title.title}
               date={update.date?.slice(0, 10)}
             />
           </Link>

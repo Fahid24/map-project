@@ -8,10 +8,10 @@ const Featured = ({ title, des, video }) => {
       <Description>{des}</Description>
       <Video className="text-center">
         <iframe
-          style={{ borderRadius: "50px" }}
+          style={{ borderRadius: "5px" }}
           width="1255"
           height="550"
-          src="https://www.youtube.com/embed/xNRJwmlRBNU"
+          src={video}
           title="YouTube video player"
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -30,13 +30,14 @@ const Wrapper = styled.div`
 const Video = styled.div`
   border-radius: 70px;
   margin-top: 70px;
+
   position: relative;
 
   @media (max-width: 768px) {
-    width: 100%;
+    width: 90%;
     height: 0;
     padding-bottom: 56.25%;
-
+    /* margin: 0 20px; */
     iframe {
       position: absolute;
       top: 0;
