@@ -67,7 +67,10 @@ const IndexPage = ({ data }) => {
     // </Layout>
     <>
       <img
-        style={{ width: "100%" }}
+        style={{
+          // width: "100%"
+          margin: "100px auto",
+        }}
         src="https://www.vosp.us/wp-content/uploads/Under.jpg"
         alt="website under construction"
       />
