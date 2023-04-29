@@ -38,33 +38,40 @@ const IndexPage = ({ data }) => {
   }
 
   return (
-    <Layout>
-      <Slider slider={slider} />
-      <HomeEvents title={eventsTitle} des={eventsDes} events={events} />
-      <AboutUsHome
-        title={aboutTitle}
-        des={aboutDes}
-        img1={img1}
-        img2={img2}
-        img3={img3}
+    // <Layout>
+    //   <Slider slider={slider} />
+    //   <HomeEvents title={eventsTitle} des={eventsDes} events={events} />
+    //   <AboutUsHome
+    //     title={aboutTitle}
+    //     des={aboutDes}
+    //     img1={img1}
+    //     img2={img2}
+    //     img3={img3}
+    //   />
+    //   <Gallery
+    //     title={homeData?.galleryTitle}
+    //     des={homeData?.galleryDescription.galleryDescription}
+    //     galleries={homeData?.galleryCards}
+    //   />
+    //   <Featured
+    //     title={homeData?.featuredTitle}
+    //     des={homeData?.featuredDescription.featuredDescription}
+    //     video={homeData?.featuredVideo}
+    //   />
+    //   <Committee
+    //     title={committeeTitle}
+    //     des={committeeDes}
+    //     committees={committee.slice(-3).reverse()}
+    //   />
+    //   <BecomeMember title={ctaTitle} image={ctaImage} />
+    // </Layout>
+    <>
+      <img
+        style={{ width: "100%" }}
+        src="https://www.vosp.us/wp-content/uploads/Under.jpg"
+        alt="website under construction"
       />
-      <Gallery
-        title={homeData?.galleryTitle}
-        des={homeData?.galleryDescription.galleryDescription}
-        galleries={homeData?.galleryCards}
-      />
-      <Featured
-        title={homeData?.featuredTitle}
-        des={homeData?.featuredDescription.featuredDescription}
-        video={homeData?.featuredVideo}
-      />
-      <Committee
-        title={committeeTitle}
-        des={committeeDes}
-        committees={committee.slice(-3).reverse()}
-      />
-      <BecomeMember title={ctaTitle} image={ctaImage} />
-    </Layout>
+    </>
   )
 }
 /**
