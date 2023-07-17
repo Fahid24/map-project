@@ -37,6 +37,7 @@ const PricingCard = ({ title, des, price, facilities, color, slug }) => {
   )
 }
 const MainWrapper = styled.div`
+  width: 460px;
   ${({ color }) => (color ? "background:#ED8F1D;" : "white;")}
   ${({ color }) => color && "color:white;"}
 

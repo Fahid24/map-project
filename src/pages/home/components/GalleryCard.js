@@ -50,6 +50,7 @@ const GalleryCard = ({ title, images, id }) => {
 }
 
 const Wrapper = styled.label`
+  max-width: 310px;
   background: #ffffff;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.08);
   border-radius: 20px;
@@ -57,7 +58,7 @@ const Wrapper = styled.label`
   cursor: pointer;
 `
 const Image = styled.img`
-  width: 300px;
+  width: fit-content;
   height: 230px;
   border-radius: 20px 20px 0 0;
   object-fit: cover;
@@ -80,6 +81,6 @@ const TextWrapper = styled.div`
     font-size: 14px;
     line-height: 21px;
   }
-  padding: 10px 0 15px 24px;
+  padding: 20px;
 `
 export default GalleryCard

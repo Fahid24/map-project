@@ -165,6 +165,10 @@ const TextWrapper = styled.section`
 `
 
 const Image1 = styled.img`
+  width: 700px;
+  height: 700px;
+  border-radius: 100%;
+  object-fit: cover;
   animation: ${({ img1Viewed }) =>
     img1Viewed
       ? css`
@@ -174,7 +178,7 @@ const Image1 = styled.img`
 
   @media (max-width: 768px) {
     animation: none;
-    max-width: 300px;
+    width: 300px;
     height: 300px;
     position: absolute;
     right: 0;
@@ -183,6 +187,10 @@ const Image1 = styled.img`
   }
 `
 const Image2 = styled.img`
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  object-fit: cover;
   animation: ${({ img2Viewed }) =>
     img2Viewed
       ? css`
@@ -191,7 +199,8 @@ const Image2 = styled.img`
       : "none"};
   @media (max-width: 768px) {
     animation: none;
-    max-width: 300px;
+    width: 300px;
+    height: 300px;
     position: absolute;
     right: -100px;
     top: -50px;
@@ -199,6 +208,11 @@ const Image2 = styled.img`
   }
 `
 const Image3 = styled.img`
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: -100px;
   animation: ${({ img3Viewed }) =>
     img3Viewed
       ? css`
@@ -206,8 +220,10 @@ const Image3 = styled.img`
         `
       : "none"};
   @media (max-width: 768px) {
+    margin-bottom: 0;
     animation: none;
-    max-width: 300px;
+    width: 300px;
+    height: 300px;
     position: absolute;
     bottom: 0;
     left: -70px;
