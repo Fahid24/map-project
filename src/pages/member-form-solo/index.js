@@ -10,10 +10,13 @@ import Layout from "../../components/layout"
 import Loading from "../../components/Loading/Loading"
 import Seo from "../../components/seo"
 import db from "../../firebase-config"
+import styled from "styled-components"
 
 const Index = data => {
   const soloData =
     data?.data.allContentfulMemberPage.edges[0].node.pricingCards[0]
+  const formInformation =
+    data?.data.allContentfulSoloFormInformation.edges[0].node
   const [agreed1, setAgreed1] = useState(false)
   const [agreed2, setAgreed2] = useState(false)
   const [agreed3, setAgreed3] = useState(false)
@@ -384,7 +387,7 @@ const Index = data => {
                         </legend>
                         <div className="mt-4 grid grid-cols-1 gap-y-2">
                           <div className="flex items-center">
-                            <input
+                            <Radio
                               required
                               onClick={e => {
                                 const age = e.target.value
@@ -394,17 +397,20 @@ const Index = data => {
                               name="age"
                               defaultValue="yes"
                               type="radio"
-                              className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                              className="h-4 w-4 cursor-pointer border-gray-300 text-indigo-600 focus:ring-indigo-500"
                             />
-                            <label htmlFor="budget-under-25k" className="ml-3">
+                            <RadioLabel
+                              htmlFor="budget-under-25k"
+                              className="ml-3"
+                            >
                               <span className="block text-sm text-gray-700">
                                 Yes
                               </span>
-                            </label>
+                            </RadioLabel>
                           </div>
 
                           <div className="flex items-center">
-                            <input
+                            <Radio
                               required
                               onClick={e => {
                                 const age = e.target.value
@@ -414,13 +420,16 @@ const Index = data => {
                               name="age"
                               defaultValue="no"
                               type="radio"
-                              className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                              className="h-4 w-4 cursor-pointer border-gray-300 text-indigo-600 focus:ring-indigo-500"
                             />
-                            <label htmlFor="budget-over-100k" className="ml-3">
+                            <RadioLabel
+                              htmlFor="budget-over-100k"
+                              className="ml-3"
+                            >
                               <span className="block text-sm text-gray-700">
                                 No
                               </span>
-                            </label>
+                            </RadioLabel>
                           </div>
                         </div>
                       </fieldset>
@@ -430,7 +439,7 @@ const Index = data => {
                         </legend>
                         <div className="mt-4 grid grid-cols-1 gap-y-2">
                           <div className="flex items-center">
-                            <input
+                            <Radio
                               required
                               onClick={e => {
                                 const status = e.target.value
@@ -440,17 +449,17 @@ const Index = data => {
                               name="status"
                               defaultValue="permanent"
                               type="radio"
-                              className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                              className="h-4 w-4 cursor-pointer border-gray-300 text-indigo-600 focus:ring-indigo-500"
                             />
-                            <label htmlFor="permanent" className="ml-3">
+                            <RadioLabel htmlFor="permanent" className="ml-3">
                               <span className="block text-sm text-gray-700">
                                 Permanent
                               </span>
-                            </label>
+                            </RadioLabel>
                           </div>
 
                           <div className="flex items-center">
-                            <input
+                            <Radio
                               required
                               onClick={e => {
                                 const status = e.target.value
@@ -460,16 +469,16 @@ const Index = data => {
                               name="status"
                               defaultValue="temporary"
                               type="radio"
-                              className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                              className="h-4 w-4 cursor-pointer border-gray-300 text-indigo-600 focus:ring-indigo-500"
                             />
-                            <label htmlFor="temporary" className="ml-3">
+                            <RadioLabel htmlFor="temporary" className="ml-3">
                               <span className="block text-sm text-gray-700">
                                 Temporary
                               </span>
-                            </label>
+                            </RadioLabel>
                           </div>
                           <div className="flex items-center">
-                            <input
+                            <Radio
                               required
                               onClick={e => {
                                 const status = e.target.value
@@ -479,13 +488,13 @@ const Index = data => {
                               name="status"
                               defaultValue="citizen"
                               type="radio"
-                              className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                              className="h-4 w-4 cursor-pointer border-gray-300 text-indigo-600 focus:ring-indigo-500"
                             />
-                            <label htmlFor="citizen" className="ml-3">
+                            <RadioLabel htmlFor="citizen" className="ml-3">
                               <span className="block text-sm text-gray-700">
                                 Citizen
                               </span>
-                            </label>
+                            </RadioLabel>
                           </div>
                         </div>
                       </fieldset>
@@ -499,17 +508,8 @@ const Index = data => {
                   </h3>
                   <p className="text-lg">
                     <span className="font-bold text-sm">NOTICE :</span>{" "}
-                    <br></br> Marathi Association Perth (MAP) reserves the right
-                    to verify the information provided in this application in
-                    accordance with and without limitation to the Constitution
-                    and bylaws of MAP. If MAP determines, in its sole
-                    discretion, that any individual on this application no
-                    longer subscribes to the objectives of MAP or that false or
-                    misleading information was provided, MAP may reject this
-                    application or cancel the membership of any or all persons
-                    listed in this application form. Membership fees are
-                    non-refundable in any event. Annual Membership Fee is due on
-                    30th June every year
+                    <br></br>
+                    {formInformation.notice.notice}
                   </p>
                   <div className="form-control pt-5">
                     <label className=" flex cursor-pointer">
@@ -523,9 +523,7 @@ const Index = data => {
                         className="checkbox checkbox-warning"
                       />
                       <span className="px-5 label-text">
-                        I hereby authorize MAP to publish my name, street
-                        address, phone numbers and email addresses on the MAP
-                        web site as well as in the MAP directory.{" "}
+                        {formInformation.termsAndCondition1.termsAndCondition1}{" "}
                       </span>
                     </label>
                   </div>
@@ -541,8 +539,7 @@ const Index = data => {
                         className="checkbox checkbox-warning"
                       />
                       <span className="label-text px-5">
-                        I authorize MAP to enroll me in the mailing group
-                        related to MAP.
+                        {formInformation.termsAndCondition2.termsAndCondition2}
                       </span>
                     </label>
                   </div>
@@ -558,11 +555,7 @@ const Index = data => {
                         className="checkbox checkbox-warning"
                       />
                       <span className="label-text px-5">
-                        I declare that the information provided in this
-                        application form is true to the best of my knowledge. I
-                        have read, understood, accept and promise to promote and
-                        uphold the Constitution and Objective of the Marathi
-                        Association, Perth.
+                        {formInformation.termsAndCondition3.termsAndCondition3}
                       </span>
                     </label>
                   </div>
@@ -618,6 +611,49 @@ const Index = data => {
   )
 }
 
+const Radio = styled.input`
+  display: none;
+`
+
+const RadioLabel = styled.label`
+  cursor: pointer;
+  position: relative;
+  padding-left: 24px;
+  margin-right: 16px;
+  font-size: 16px;
+  user-select: none;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1px solid gray;
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 3px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: black;
+    opacity: 0;
+    transform: scale(0);
+    transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;
+  }
+
+  ${Radio}:checked + &:after {
+    transform: scale(1);
+    opacity: 1;
+    background-color: #ed8f1d; /* Change this to the desired active color */
+  }
+`
 export default Index
 export const Head = () => <Seo title="Solo Package Form" />
 
@@ -633,6 +669,24 @@ export const query = graphql`
             description {
               description
             }
+          }
+        }
+      }
+    }
+    allContentfulSoloFormInformation {
+      edges {
+        node {
+          notice {
+            notice
+          }
+          termsAndCondition1 {
+            termsAndCondition1
+          }
+          termsAndCondition2 {
+            termsAndCondition2
+          }
+          termsAndCondition3 {
+            termsAndCondition3
           }
         }
       }

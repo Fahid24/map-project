@@ -22,7 +22,7 @@ const PricingCard = ({ title, des, price, facilities, color, slug }) => {
       <Wrapper2>
         <ul>
           {facilities?.map((facility, index) => (
-            <li key={index}>
+            <li className=" " key={index}>
               <Icon color={color} size={25} />
 
               <span>{facility}</span>
@@ -102,7 +102,7 @@ const Wrapper2 = styled.div`
     gap: 15px;
     li {
       display: flex;
-      align-items: center;
+      align-items: start;
       gap: 10px;
       span {
         font-weight: 400;
