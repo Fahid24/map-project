@@ -42,6 +42,7 @@ const MainWrapper = styled.div`
   ${({ color }) => color && "color:white;"}
 
   border: 1px solid #ed8f1d;
+  width: auto;
   display: grid;
   gap: 19px;
   border-radius: 10px;
