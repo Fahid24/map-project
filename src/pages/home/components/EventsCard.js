@@ -4,7 +4,7 @@ import styled from "styled-components"
 const EventsCard = ({ img, title, des, date }) => {
   return (
     <Wrapper>
-      <img className="" src={img} alt="" />
+      <img className="object-cover" src={img} alt="" />
       <TextWrapper>
         <h2>{title?.slice(0, 50)}</h2>
         <p>{des}. . .</p>
