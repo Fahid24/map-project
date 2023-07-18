@@ -4,8 +4,6 @@ import { BsCheckCircleFill } from "react-icons/bs"
 import { Link } from "gatsby"
 
 const PricingCard = ({ title, des, price, facilities, color, slug }) => {
-  // console.log(amount)
-
   return (
     <MainWrapper color={color}>
       <div
@@ -29,7 +27,7 @@ const PricingCard = ({ title, des, price, facilities, color, slug }) => {
             </li>
           ))}
         </ul>
-        <Link to={"/" + slug}>
+        <Link className="justify-self-center" to={"/" + slug}>
           <Button color={color}>become a member</Button>
         </Link>
       </Wrapper2>
@@ -42,12 +40,12 @@ const MainWrapper = styled.div`
   ${({ color }) => color && "color:white;"}
 
   border: 1px solid #ed8f1d;
-  width: auto;
   display: grid;
   gap: 19px;
   border-radius: 10px;
   transition: 0.5s;
   @media (max-width: 768px) {
+    width: auto;
     transform: scale(1);
   }
 
@@ -97,6 +95,7 @@ const Wrapper1 = styled.div`
 
 const Wrapper2 = styled.div`
   padding: 0 50px 50px 50px;
+  display: grid;
 
   ul {
     display: grid;
@@ -127,6 +126,7 @@ const Button = styled.button`
   font-size: 20px;
   line-height: 30px;
   text-align: center;
+  justify-self: center;
   text-transform: capitalize;
   padding: 10px 50px;
   border: 1px solid #ed8f1d;

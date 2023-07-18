@@ -86,6 +86,7 @@ const Index = data => {
         setAgreed1(false)
         setAgreed2(false)
         setAgreed3(false)
+        setCheckoutError("")
         toast.success("Successfully paid and added information")
       } catch (e) {
         toast.error("Error for adding document")
@@ -389,6 +390,7 @@ const Index = data => {
                           <div className="flex items-center">
                             <Radio
                               required
+                              checked={age === "yes"}
                               onClick={e => {
                                 const age = e.target.value
                                 setAge(age)
@@ -399,19 +401,21 @@ const Index = data => {
                               type="radio"
                               className="h-4 w-4 cursor-pointer border-gray-300 text-indigo-600 focus:ring-indigo-500"
                             />
-                            <RadioLabel
+                            <label
+                              checkoutError={checkoutError}
                               htmlFor="budget-under-25k"
                               className="ml-3"
                             >
                               <span className="block text-sm text-gray-700">
                                 Yes
                               </span>
-                            </RadioLabel>
+                            </label>
                           </div>
 
                           <div className="flex items-center">
                             <Radio
                               required
+                              checked={age === "no"}
                               onClick={e => {
                                 const age = e.target.value
                                 setAge(age)
@@ -441,6 +445,7 @@ const Index = data => {
                           <div className="flex items-center">
                             <Radio
                               required
+                              checked={status === "permanent"}
                               onClick={e => {
                                 const status = e.target.value
                                 setStatus(status)
@@ -461,6 +466,7 @@ const Index = data => {
                           <div className="flex items-center">
                             <Radio
                               required
+                              checked={status === "temporary"}
                               onClick={e => {
                                 const status = e.target.value
                                 setStatus(status)
@@ -480,6 +486,7 @@ const Index = data => {
                           <div className="flex items-center">
                             <Radio
                               required
+                              checked={status === "citizen"}
                               onClick={e => {
                                 const status = e.target.value
                                 setStatus(status)
@@ -642,7 +649,7 @@ const RadioLabel = styled.label`
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: black;
+    background-color: #ed8f1d;
     opacity: 0;
     transform: scale(0);
     transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out;

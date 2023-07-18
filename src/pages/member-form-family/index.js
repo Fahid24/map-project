@@ -11,6 +11,7 @@ import Loading from "../../components/Loading/Loading"
 import Seo from "../../components/seo"
 import db from "../../firebase-config"
 import styled from "styled-components"
+import "../../components/styles.css"
 
 const Index = data => {
   const familyData =
@@ -137,6 +138,7 @@ const Index = data => {
         setAgreed1(false)
         setAgreed2(false)
         setAgreed3(false)
+        setCheckoutError("")
         toast.success("Successfully paid and added information")
       } catch (e) {
         toast.error("Error for adding document")
@@ -604,6 +606,7 @@ const Index = data => {
                                 const age = e.target.value
                                 setAge(age)
                               }}
+                              checked={age === "yes"}
                               id="budget-under-25k"
                               name="age"
                               defaultValue="yes"
@@ -627,6 +630,7 @@ const Index = data => {
                                 const age = e.target.value
                                 setAge(age)
                               }}
+                              checked={age === "no"}
                               id="budget-over-100k"
                               name="age"
                               defaultValue="no"
@@ -656,6 +660,7 @@ const Index = data => {
                                 const status = e.target.value
                                 setStatus(status)
                               }}
+                              checked={status === "permanent"}
                               id="permanent"
                               name="status"
                               defaultValue="permanent"
@@ -676,6 +681,7 @@ const Index = data => {
                                 const status = e.target.value
                                 setStatus(status)
                               }}
+                              checked={status === "temporary"}
                               id="temporary"
                               name="status"
                               defaultValue="temporary"
@@ -695,6 +701,7 @@ const Index = data => {
                                 const status = e.target.value
                                 setStatus(status)
                               }}
+                              checked={status === "citizen"}
                               id="citizen"
                               name="status"
                               defaultValue="citizen"
@@ -773,6 +780,7 @@ const Index = data => {
                           const gender = e.target.value
                           setGender(gender)
                         }}
+                        checked={gender === "male"}
                         id="male"
                         name="gender"
                         defaultValue="male"
@@ -792,6 +800,7 @@ const Index = data => {
                           const gender = e.target.value
                           setGender(gender)
                         }}
+                        checked={gender === "female"}
                         id="female"
                         name="gender"
                         defaultValue="female"
@@ -810,6 +819,7 @@ const Index = data => {
                           const gender = e.target.value
                           setGender(gender)
                         }}
+                        checked={gender === "others"}
                         id="others"
                         name="gender"
                         defaultValue="others"
@@ -879,6 +889,7 @@ const Index = data => {
                           const gender2 = e.target.value
                           setGender2(gender2)
                         }}
+                        checked={gender2 === "male"}
                         id="male2"
                         name="gender2"
                         defaultValue="male"
@@ -898,6 +909,7 @@ const Index = data => {
                           const gender2 = e.target.value
                           setGender(gender2)
                         }}
+                        checked={gender2 === "female"}
                         id="female2"
                         name="gender2"
                         defaultValue="female"
@@ -916,6 +928,7 @@ const Index = data => {
                           const gender2 = e.target.value
                           setGender2(gender2)
                         }}
+                        checked={gender2 === "others"}
                         id="others2"
                         name="gender2"
                         defaultValue="others"
@@ -985,6 +998,7 @@ const Index = data => {
                           const gender3 = e.target.value
                           setGender3(gender3)
                         }}
+                        checked={gender3 === "male"}
                         id="male3"
                         name="gender3"
                         defaultValue="male"
@@ -1004,6 +1018,7 @@ const Index = data => {
                           const gender3 = e.target.value
                           setGender3(gender3)
                         }}
+                        checked={gender3 === "female"}
                         id="female3"
                         name="gender3"
                         defaultValue="female"
@@ -1022,6 +1037,7 @@ const Index = data => {
                           const gender3 = e.target.value
                           setGender3(gender3)
                         }}
+                        checked={gender3 === "others"}
                         id="others3"
                         name="gender3"
                         defaultValue="others"

@@ -23,7 +23,7 @@ const GalleryCard = ({ title, images, id }) => {
         <div className="modal-box w-11/12 p-[0] relative mt-16  max-w-5xl">
           <label
             htmlFor={id}
-            className="btn btn-sm hover:text-white  btn-circle bg-white text-black font-bold text-md absolute z-10 right-2 top-2"
+            className="btn btn-sm hover:text-white  btn-circle bg-white text-black font-bold text-xl absolute z-10 right-2 top-2"
           >
             ✕
           </label>
@@ -34,11 +34,11 @@ const GalleryCard = ({ title, images, id }) => {
             className="mySwiper"
           >
             {images?.map(u => (
-              <SwiperSlide key={u.id}>
+              <SwiperSlide className="flex justify-center" key={u.id}>
                 <MainImage
-                  className="object-cover lg:w-[100%] h-[500px] lg:h-[80vh] rounded-md"
+                  className="object-contain lg:w-[100%] h-[500px] lg:h-[80vh] rounded-md"
                   src={u.file.url}
-                  // alt="slider"
+                  alt="slider"
                 />
               </SwiperSlide>
             ))}

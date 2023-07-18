@@ -4,14 +4,12 @@ import { getFirestore } from "firebase/firestore"
 import { getStorage } from "firebase/storage"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCB-LKpJVfafY2ddjG1oXrgxljJRlBF6Tg",
-  authDomain: "restaurant-project-f2dba.firebaseapp.com",
-  databaseURL: "https://restaurant-project-f2dba-default-rtdb.firebaseio.com",
-  projectId: "restaurant-project-f2dba",
-  storageBucket: "restaurant-project-f2dba.appspot.com",
-  messagingSenderId: "907660534038",
-  appId: "1:907660534038:web:746e96fa3077f29449b037",
-  measurementId: "G-20P34ET9LK",
+  apiKey: "AIzaSyBlHtedyRMUOSJVohmaZZq0J6hX_buNkLw",
+  authDomain: "email-password-auth-e4dec.firebaseapp.com",
+  projectId: "email-password-auth-e4dec",
+  storageBucket: "email-password-auth-e4dec.appspot.com",
+  messagingSenderId: "816962223903",
+  appId: "1:816962223903:web:aa2fc783d5f4a9cc853a2a",
 }
 
 const app = initializeApp(firebaseConfig)

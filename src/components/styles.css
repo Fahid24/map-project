@@ -5,3 +5,7 @@
 .swiper-bullet-active {
   background-color: white;
 }
+
+input[type="radio"] {
+  accent-color: green;
+}
